@@ -1,4 +1,4 @@
-.. SPDX-License-Identifier: GFDL-1.3-or-later
+.. SPDX-License-Identifier:	CC-BY-NC-SA-4.0
 
 新月杀Lua拓展编写教程
 ====================================
