@@ -50,7 +50,10 @@ https://mirrors.tuna.tsinghua.edu.cn/github-release/git-for-windows/git/\ 。
 
 Git的安装流程就是不断无脑的点下一步了，下一步下一步下一步……除了这里：
 
-[图片]
+.. figure:: pic/6-1.jpg
+   :align: center
+
+   修改默认编辑器为vscode
 
 这里默认会使用Vim，切记改成Visual Studio Code再点下一步！
 
@@ -146,9 +149,15 @@ Git的安装流程就是不断无脑的点下一步了，下一步下一步下�
 
 用文件管理器打开自己正在制作的那个拓展包的文件夹，右键Git bash here打开命令行。
 
-[图片]
+.. figure:: pic/6-2.jpg
+   :align: center
 
-[图片]
+   打开Git bash
+
+.. figure:: pic/6-3.jpg
+   :align: center
+
+   Git bash的界面
 
 从命令提示符中可以看到我们现在的当前目录就是拓展包的文件夹。不过此时这里还建\
 立Git仓库，所以我们要使用如下命令先创建一个空白的仓库：
@@ -205,13 +214,22 @@ init表示这是本仓库的第一次提交。
 要将新仓库发到gitee去，你首先得在网页里面新建一个仓库。我们现在用的这个仓库\
 名叫study，那就创建一个名为study的仓库吧。
 
-[图片]
+.. figure:: pic/6-4.jpg
+   :align: center
 
-[图片]
+   在页面右上角找到新建仓库
+
+.. figure:: pic/6-5.jpg
+   :align: center
+
+   创建与文件夹同名的仓库
 
 注意下面初始化仓库啥的都不要勾选：
 
-[图片]
+.. figure:: pic/6-6.jpg
+   :align: center
+
+   不勾选那三个初始化的框
 
 这样一来，就在网页里面成功为自己账号创立了一个空仓库了。接下来要做的就是将\
 自己的\ **本地**\ 仓库\ *推送*\ 到\ **远程仓库**\ 去。
@@ -266,4 +284,19 @@ origin，这是因为\ ``git clone``\ 的时候默认会给远程仓库取这个
 
 新月杀本体里面已经包含一个LICENSE了，把他复制到拓展包文件夹里面吧。
 
-（待续）
+复制了LICENSE文件之后文件夹内长这样：
+
+.. figure:: pic/6-7.jpg
+   :align: center
+   
+   复制了LICENSE之后
+
+然后在git bash操作吧：
+
+.. code::sh
+
+   $ git add .
+   $ git commit -m "add license"
+   $ git push
+
+这样一来，我们就成功提交了最新的改动，并且推送到了Gitee。这就是拓展更新的步骤。
