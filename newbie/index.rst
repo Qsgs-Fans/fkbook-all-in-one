@@ -21,3 +21,4 @@
    06-room.rst
    07-replay.rst
    08-commu.rst
+   09-faq.rst
