@@ -88,6 +88,7 @@ latex_elements = {
   'preamble': r'''
 ''',
   'figure_align': 'H',
+  'classoptions':',oneside',
 }
 
 latex_documents = [
