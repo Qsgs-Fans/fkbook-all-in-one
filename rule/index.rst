@@ -11,5 +11,7 @@
    04-gameflow.rst
    05-skill.rst
    06-use-response.rst
+   07-hp.rst
+   08-death.rst
 
    faq.rst
