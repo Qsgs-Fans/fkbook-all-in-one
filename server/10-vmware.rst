@@ -10,7 +10,7 @@
 
 不赘述，百度即可。按理说随便搜搜vmware破解版就搜到了。
 
-实在不懂就参考https://zhuanlan.zhihu.com/p/616883406
+实在不懂就参考 https://zhuanlan.zhihu.com/p/616883406
 
 （其实也没必要非要安装最新版，旧一点的版本一样没关系的）
 
@@ -34,7 +34,7 @@
    https://cdimage.debian.org/debian-cd/12.1.0/amd64/iso-dvd/debian-12.1.0-amd64-DVD-1.iso
 
 等待下载完毕后，在vmware中新建虚拟机。
-因为我没搞到中文版，所以新建虚拟机这块烦请参考https://zhuanlan.zhihu.com/p/41940739。
+因为我没搞到中文版，所以新建虚拟机这块烦请参考 https://zhuanlan.zhihu.com/p/41940739。
 照着这个网站新建虚拟机就行了，注意虚拟机名称以及发行版都应该选择Debian x64的。
 
 创建完成后，在虚拟机页面先点击“编辑虚拟机设置…”，将ISO映像换成我们刚刚下载的那个。
