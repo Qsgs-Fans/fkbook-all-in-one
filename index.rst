@@ -21,4 +21,4 @@
    rule/index.rst
    server/index.rst
    new-to-lua/index.rst
-   modding/index.rst
+   anhe/index.rst
