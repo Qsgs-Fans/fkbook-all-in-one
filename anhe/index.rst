@@ -13,3 +13,4 @@
    05-audio.rst
    06-git.rst
    07-comment-log.rst
+   08-distance.rst

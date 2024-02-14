@@ -61,7 +61,7 @@
 
 点击全部替换，名字就改掉了！
 
-然后是翻译（还记得那个sgs.LoadTranslationTable吧？）：
+然后是翻译（还记得那个Fk:loadTranslationTable吧？）：
 
 .. code:: lua
 
