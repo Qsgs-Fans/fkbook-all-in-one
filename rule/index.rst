@@ -13,5 +13,6 @@
    06-use-response.rst
    07-hp.rst
    08-death.rst
+   09-judge.rst
 
    faq.rst
