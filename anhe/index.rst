@@ -4,6 +4,7 @@
 ============
 
 .. toctree::
+   :numbered:
 
    00-prepare.rst
    01-hello.rst

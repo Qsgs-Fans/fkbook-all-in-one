@@ -4,6 +4,7 @@
 ===========
 
 .. toctree::
+   :numbered:
 
    01-preliminary.rst
    02-event.rst

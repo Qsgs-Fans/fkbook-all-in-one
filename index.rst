@@ -23,6 +23,7 @@
 - Part 6 - 架构解析：介绍一些关于新月杀底层的知识，不会特别多。
 
 .. toctree::
+   :titlesonly:
 
    newbie/index.rst
    rule/index.rst

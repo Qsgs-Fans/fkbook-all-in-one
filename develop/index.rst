@@ -2,6 +2,7 @@
 ===============
 
 .. toctree::
+   :numbered:
 
    01-intro.rst
    02-env.rst

@@ -4,6 +4,7 @@
 =========
 
 .. toctree::
+  :numbered:
 
   09-linux-intro.rst 
   10-vmware.rst

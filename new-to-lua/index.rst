@@ -4,6 +4,7 @@
 =============
 
 .. toctree::
+   :numbered:
 
    15-hello-lua.rst
    16-var-and-type.rst

@@ -4,6 +4,7 @@
 =========
 
 .. toctree::
+   :numbered:
 
    01-intro.rst
    02-install.rst
