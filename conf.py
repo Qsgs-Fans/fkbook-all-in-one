@@ -16,10 +16,9 @@ fk_repo_path = os.path.abspath('.')
 
 # -- Project information -----------------------------------------------------
 
-project = '新月杀制作组'
+project = '新月杀'
 copyright = '2024, Qsgs-Fans'
 author = 'Qsgs-Fans'
-
 
 # -- General configuration ---------------------------------------------------
 
@@ -39,6 +38,7 @@ extensions = [
   # 'sphinx_lua',
 ]
 
+'''
 lua_source_path = [
   fk_repo_path + "/../lua",
   fk_repo_path + "/../packages",
@@ -48,6 +48,7 @@ lua_source_encoding = 'utf8'
 lua_source_comment_prefix = '---'
 lua_source_use_emmy_lua_syntax = True
 lua_source_private_prefix = '_'
+'''
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
