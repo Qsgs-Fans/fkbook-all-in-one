@@ -12,9 +12,16 @@
 
 编写了文档之后自然需要在本地运行起来才好。环境搭建方式如下：
 
-先安装Python3最新版，然后在仓库内Git bash here，使用命令：
+先安装Python3最新版，然后在仓库内Git bash here，先将仓库clone下来，
+注意仓库的子模块指向的是github上的新月杀，建议手动clone一个。
+以下是clone与构建放在一起的代码：
+
 
 ```sh
+$ git clone https://gitee.com/Qsgs-Fans/fkbook-all-in-one
+$ cd fkbook-all-in-one
+$ git clone https://gitee.com/notify-ctrl/FreeKill
+
 $ pip install -r requirement.txt
 $ make html # 有make的时候使用这个
 # 若未安装make则使用这个命令
