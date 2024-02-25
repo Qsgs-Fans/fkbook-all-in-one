@@ -1,0 +1,4 @@
+ServerPlayer
+==============
+
+.. lua:autoclass:: ServerPlayer

@@ -1,0 +1,4 @@
+Exppattern
+============
+
+.. lua:autoclass:: Exppattern

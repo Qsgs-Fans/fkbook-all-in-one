@@ -21,6 +21,7 @@
 - Part 4 - 学习Lua：如果你尚未学习过Lua语言，可以从这几章着手，否则可以跳过。
 - Part 5 - Mod制作：正式介绍Mod的制作流程以及Git操练，一步步变强吧。
 - Part 6 - 架构解析：介绍一些关于新月杀底层的知识，不会特别多。
+- Part 7 - API参考：就是从源码注释生成的罢了，说不定注释还没源码写的多呢。
 
 .. toctree::
    :titlesonly:
@@ -31,3 +32,4 @@
    new-to-lua/index.rst
    anhe/index.rst
    develop/index.rst
+   api/index.rst

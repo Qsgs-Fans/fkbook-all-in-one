@@ -1,0 +1,4 @@
+Player
+=======
+
+.. lua:autoclass:: Player

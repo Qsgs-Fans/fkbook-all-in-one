@@ -34,21 +34,19 @@ extensions = [
   'sphinx.ext.mathjax',
   'sphinx.ext.ifconfig',
   'sphinx.ext.githubpages',
-  # 'sphinxcontrib.luadomain',
-  # 'sphinx_lua',
+  'sphinxcontrib.luadomain',
+  'sphinx_lua',
 ]
 
-'''
 lua_source_path = [
-  fk_repo_path + "/../lua",
-  fk_repo_path + "/../packages",
+  fk_repo_path + "/FreeKill/lua",
+  #fk_repo_path + "/FreeKill/packages",
 ]
 
 lua_source_encoding = 'utf8'
 lua_source_comment_prefix = '---'
 lua_source_use_emmy_lua_syntax = True
 lua_source_private_prefix = '_'
-'''
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -63,7 +61,10 @@ language = 'zh_CN'
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = []
+exclude_patterns = [
+  '.venv/*',
+  'FreeKill/*',
+]
 
 
 # -- Options for HTML output -------------------------------------------------

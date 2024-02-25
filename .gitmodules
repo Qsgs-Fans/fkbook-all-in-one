@@ -1,0 +1,3 @@
+[submodule "FreeKill"]
+	path = FreeKill
+	url = https://github.com/Qsgs-Fans/FreeKill.git

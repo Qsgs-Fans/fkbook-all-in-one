@@ -1,0 +1,4 @@
+GameEvent
+==========
+
+.. lua:autoclass:: GameEvent
