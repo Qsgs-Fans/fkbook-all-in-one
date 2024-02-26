@@ -88,19 +88,17 @@ AskForCardResponse
 
 .. lua:autoclass:: AskForCardResponse
 
-.. lua parser bug
+PindianStruct
+---------------
 
-  PindianStruct
-  ---------------
+.. lua:autoclass:: PindianStruct
 
-  .. lua:autoclass:: PindianStruct
+LogMessage
+-----------
 
-  LogMessage
-  -----------
+.. lua:autoclass:: LogMessage
 
-  .. lua:autoclass:: LogMessage
+DrawCardStruct
+---------------
 
-  DrawCardStruct
-  ---------------
-
-  .. lua:autoclass:: DrawCardStruct
+.. lua:autoclass:: DrawCardStruct
