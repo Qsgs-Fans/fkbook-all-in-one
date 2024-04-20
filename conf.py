@@ -39,7 +39,10 @@ extensions = [
 ]
 
 lua_source_path = [
-  fk_repo_path + "/FreeKill/lua",
+  fk_repo_path + "/freekill-core/lua",
+  fk_repo_path + "/freekill-core/standard",
+  fk_repo_path + "/freekill-core/standard_cards",
+  fk_repo_path + "/freekill-core/maneuvering",
   #fk_repo_path + "/FreeKill/packages",
 ]
 
