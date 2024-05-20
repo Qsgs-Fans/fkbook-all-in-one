@@ -35,7 +35,9 @@ extensions = [
   'sphinx.ext.ifconfig',
   'sphinx.ext.githubpages',
   'sphinxcontrib.luadomain',
+  'sphinxcontrib.plantuml',
   'sphinx_lua',
+
 ]
 
 lua_source_path = [
@@ -50,6 +52,7 @@ lua_source_encoding = 'utf8'
 lua_source_comment_prefix = '---'
 lua_source_use_emmy_lua_syntax = True
 lua_source_private_prefix = '_'
+plantuml_output_format = 'svg_img'
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

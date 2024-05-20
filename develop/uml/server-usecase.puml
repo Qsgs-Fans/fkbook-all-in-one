@@ -1,0 +1,25 @@
+@startuml
+title "服务端用例图 - 总体"
+'left to right direction
+actor 玩家 as User
+actor 管理员 as Admin
+note right of Admin
+  管理员使用进程Shell直接管理
+  故无需使用部分功能
+  当然了 以后有可能产生类似MC中op玩家的新需求
+end note
+
+usecase "用户登录" as Login
+usecase "创建房间" as CreateRoom
+usecase "进行游玩" as Play
+usecase "聊天交互" as Chat
+usecase "服务器信息" as Info
+
+User --> Login
+User --> CreateRoom
+User --> Play
+User --> Chat
+User --> Info
+Admin -u-> Chat
+Admin -u-> Info
+@enduml

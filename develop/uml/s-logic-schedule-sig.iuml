@@ -1,0 +1,7 @@
+participant "主线程" as Rou
+
+box 游戏逻辑线程 #LightBlue
+participant RoomThread as R
+participant Scheduler as S
+participant Lua as L
+end box

@@ -1,0 +1,32 @@
+@startuml
+class RoomThread {
+  -Room[] rooms
+  +void addRoom(Room *room)
+  +void removeRoom(Room *room)
+  +void pushRequest(string req)
+  +void delay(int roomId, int ms)
+  +void wakeUp(int roomId)
+}
+class Room {
+  -RoomThread *thread 
+  -QTimer request_timer = nullptr
+  +void setRequestTimer(int ms)
+  +void destroyRequestTimer()
+  +void delay(int ms)
+}
+class Scheduler {
+  -RoomThread *thread 
+  -lua_State *L
+  +void handleRequest(string req)
+  +void doDelay(int roomId, int ms)
+  +void resumeRoom(int roomId)
+}
+
+note top of Room
+  图中标出的三个方法只由Lua调用
+end note
+
+Scheduler -* RoomThread
+RoomThread *- Room
+
+@enduml

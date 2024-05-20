@@ -1,0 +1,24 @@
+@startuml
+title 一对一request中request timer的原理
+participant Lua
+participant Room
+actor "玩家" as P
+
+Lua -> P : doRequest
+Lua -> Room : setRequestTimer
+create control Timer
+Room -> Timer ** : new
+
+alt 成功情况
+  P -> Lua : reply
+else 掉线或者干脆烧条的情况
+  P ->x Lua : 未能发送数据
+  Timer -> Room : 时间到
+  Room -> Lua : wakeUp
+  Lua -> Lua : 放弃等待
+end
+
+Lua -> Room : destroyRequestTimer
+Room -> Timer !! : delete
+
+@enduml

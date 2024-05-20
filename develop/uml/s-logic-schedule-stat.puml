@@ -1,0 +1,24 @@
+@startuml
+hide empty description
+state "等待事件 - C++" as Cpp
+Cpp : 由Scheduler运行，是一个事件循环
+Cpp : 主要工作就是等待事件产生
+Cpp : 根据事件类型（答复或要求）交给Lua处理
+
+state "处理请求 - Lua" as Req
+Req : 处理与游戏流程没有直接关联
+Req : 并且与C++底层更是完全无关的事件
+Req : 例如预亮技能、投降、旁观等
+Req : 一般来说很快就能完成处理
+state "游戏逻辑 - Lua" as Game
+Game : 处理游戏逻辑
+Game : 一般来说会频繁中断
+
+[*] -r-> Cpp : thread::run()
+Cpp -[#blue]-> Req : handleRequest
+Req -r[#gray]-> Game : 创建房间、投降之类的特殊事件\n会直接进入游戏逻辑状态
+Cpp -[#blue]-> Game : 房间已废弃\n计时器时间到\n收到答复
+Game -[#red]-> Cpp : 正常结束\ndelay\nwaitReply
+Req -[#red]-> Cpp : 正常结束
+Cpp -r-> [*] : 因为调试或退出程序而终止
+@enduml
