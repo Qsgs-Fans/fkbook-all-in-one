@@ -13,6 +13,9 @@ build:
   os: ubuntu-22.04
   tools:
     python: "3.12"
+
+  apt_packages:
+    - plantuml
     # You can also specify other tool versions:
     # nodejs: "20"
     # rust: "1.70"
