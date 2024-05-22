@@ -1,0 +1,61 @@
+' https://gist.github.com/QuantumGhost/0955a45383a0b6c0bc24f9654b3cb561#file-example-puml
+
+@startuml
+!define Table(name,desc) class name as "desc" << (T,#FFAAAA) >>
+!define primary_key(x) <b>x</b>
+!define unique(x) <color:green>x</color>
+!define not_null(x) <u>x</u>
+hide methods
+hide stereotypes
+
+Table(userinfo, "userinfo") {
+  primary_key(id) INTEGER
+  unique(name) VARCHAR[255]
+  password CHAR[64]
+  salt CHAR[8]
+  avatar VARCHAR[64]
+  lastLoginIp VARCHAR[64]
+  banned BOOLEAN
+}
+
+Table(usergameinfo, "usergameinfo\n（保存各种信息，待修改）") {
+  primary_key(id) INTEGER
+  registerTime INTEGER
+  lastLoginTime INTEGER
+  totalGameTime INTEGER
+}
+
+Table(pWinRate, "pWinRate\n（玩家的胜率）") {
+  id INTEGER
+  mode VARCHAR[16]
+  role VARCHAR[8]
+  win INTEGER
+  lose INTEGER
+  draw INTEGER
+}
+
+Table(runRate, "runRate\n（玩家的逃跑率）") {
+  id INTEGER
+  mode VARCHAR[16]
+  run INTEGER
+}
+
+Table(gWinRate, "gWinRate\n（武将的胜率）") {
+  general VARCHAR[8]
+  mode VARCHAR[16]
+  role VARCHAR[8]
+  win INTEGER
+  lose INTEGER
+  draw INTEGER
+}
+
+Table(banip, "banip\n（被ban的IP）") {
+  ip VARCHAR[16]
+}
+
+userinfo -r- usergameinfo
+userinfo -d- pWinRate
+userinfo -d- runRate
+gWinRate -d[#hidden]- banip
+
+@enduml

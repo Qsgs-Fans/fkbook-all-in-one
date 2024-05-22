@@ -1,0 +1,33 @@
+@startuml
+start
+:接收到连接请求;
+:发送公钥等待回信，若超时则拒绝连接，否则获得msg并判断;
+if (msg是JSON数组且长度为5?) then (Y)
+  :从msg中提取用户名、
+  密码、版本号、md5、设备码;
+  if (版本号不一致?) then (Y)
+    :提示更新版本;
+    end
+  elseif (IP地址在封禁列表\n或者暂封列表?) then (Y)
+    :提示被封禁或被暂时封禁;
+    end
+  elseif (设备码在封禁列表?) then (Y)
+    :提示被封禁;
+    end
+  elseif (MD5与服务端不符?) then (Y)
+    :将拓展包信息发给客户端
+    客户端据此更新拓展包;
+    end
+  elseif (若用户不存在则自动注册，\n否则若密码错误?) then (Y)
+    :提示用户名或密码错误;
+    end
+  elseif (用户名已被封禁?) then (Y)
+    :提示被封禁;
+    end
+  endif
+else
+  end
+endif
+:更新用户的登录数据，为其创建ServerPlayer对象，将服务器信息和游戏数据发给客户端，将其添加到大厅;
+stop
+@enduml

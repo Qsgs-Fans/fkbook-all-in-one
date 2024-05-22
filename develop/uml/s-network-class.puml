@@ -1,0 +1,68 @@
+@startuml
+hide empty methods
+class ServerSocket {
+  -QTcpServer *server
+  -QUdpSocket *udpSocket
+  +void listen(ushort port)
+  -void processDatagram(bytes msg, string addr, ushort port)
+}
+class AuthManager {
+  -RSA *rsa
+  -string public_key
+  +bool checkClientVersion(string ver)
+  +JsonObject checkPassword(string name, string password)
+  -JsonObject queryUserInfo(string name, string password)
+}
+class Server {
+  -QHash<int, ServerPlayer *> players
+  -sqlite3 *db
+  -AuthManager *auth
+  -ServerSocket *server
+  -string md5
+  +void processNewConnection(ClientSocket *c)
+  +void sendEarlyPacket(ClientSocket *c, string cmd, string data)
+  +void setupPlayer(ServerPlayer *p, bool all_info = true)
+  +thread heartbeat()
+}
+class Player {
+  +int id
+  +string screenName
+  +string avatar
+  +int state
+  +bool ready
+  +bool died
+  +int[] gameData
+  +int totalGameTime
+}
+class ServerPlayer {
+  -Router *router
+  +bool alive
+  +void doRequest(string cmd, string data, int timeout)
+  +string waitForReply(int timeout)
+  +void doNotify(string cmd, string data)
+}
+class Router {
+  -ClientSocket *socket
+  +void request(int type, string cmd, string data, int timeout)
+  +void reply(int type, string cmd, string data)
+  +void notify(int type, string cmd, string data)
+  -void handlePacket(bytes rawPacket)
+}
+class ClientSocket {
+  -QTcpSocket *socket
+  -AES_KEY aes_key
+  -bytes aesEnc(bytes in)
+  -bytes aesDec(bytes out)
+  +void send(bytes msg)
+  +void message_got(bytes msg)
+}
+
+'  图中标出的public成员均为private成员及其getter/setter
+ServerPlayer -r-|> Player
+ServerPlayer -l-* Server
+ServerSocket -d-* Server
+AuthManager -u-* Server
+Router -d-* ServerPlayer
+ClientSocket -l-* Router
+
+@enduml
