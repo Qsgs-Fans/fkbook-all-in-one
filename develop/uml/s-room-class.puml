@@ -1,0 +1,20 @@
+@startuml
+hide empty methods
+class Room {
+  -RoomThread *thread
+  -int id
+  -string name
+  -int capacity
+  -bytes settings
+  -bool m_abandoned
+  -ServerPlayer *owner
+  -QList<ServerPlayer *> players
+  -QList<ServerPlayer *> observers
+  -QList<int> runned_players
+  -QList<int> rejected_players
+  -int robot_id
+  -bool gameStarted
+  -bool m_ready
+
+}
+@enduml
