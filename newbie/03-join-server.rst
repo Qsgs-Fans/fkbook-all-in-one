@@ -80,6 +80,8 @@
 ::
 
   qsgs-fans.top - 新月杀主服
-  qsgs-fans.top:9552 - 新月车万杀联机服务器
+  qsgs-fans.top:9552 - 新月车万包联机服务器
+  qsgs-fans.top:9553 - 新月东方包联机服务器
   qsgs-fans.top:9555 - 氯师杀服务器
-  huosan.top - 拓展大杂烩的私服
+  huosan.top - 拓展大杂烩的PVE特化私服
+..   huosan.top - 拓展大杂烩的PVP私服
