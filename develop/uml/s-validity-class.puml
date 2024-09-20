@@ -1,0 +1,22 @@
+@startuml
+class Item {
+  +Scene parent
+  +string type
+  +any id
+  +boolean enabled
+  +any data
+}
+class Scene {
+  +Item[] items
+  +void update(change)
+}
+class RequestData {
+  +any data
+  +Scene scene
+  +void accept(button)
+}
+
+Item -r-> Scene
+Scene -r-> RequestData
+
+@enduml

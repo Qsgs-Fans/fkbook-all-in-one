@@ -1,0 +1,45 @@
+@startuml
+hide empty methods
+class Router {
+  -int requestId
+  -int requestTimeout
+  -int expectReplyId
+  -string m_reply
+  -QMutex replyMutex
+  +void doRequest(command, jsonData, timeout)
+  +string waitForReply(timeout)
+  +void handlePacket(raw)
+}
+
+class ServerPlayer {
+  -Router *router
+  -bool m_thinking
+  +void thinking()
+  +void setThinking(thinking)
+}
+
+class Request #aliceblue {
+  +Room room
+  +ServerPlayer[] players
+  +int n
+  +bool? accept_cancel
+  +int timeout
+  +string command
+  +map<int, any> data
+  +map<int, any> default_reply
+  +map<int, any> result
+  -map<CPlayer, boolean> send_success
+  -map<CPlayer, int[]> pending_requests
+  +void setData(player, data)
+  +void setDefaultReply(player, data)
+  +void ask()
+  +ServerPlayer[] getWinners()
+  -void _sendPacket(player)
+  -void _checkReply(player)
+  -void finish()
+}
+
+Router -l[#hide]- ServerPlayer
+Router -r[#hide]- Request
+
+@enduml

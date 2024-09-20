@@ -17,4 +17,9 @@ class Room {
   -bool m_ready
 
 }
+
+class Lobby {
+}
+
+Lobby --|> Room
 @enduml

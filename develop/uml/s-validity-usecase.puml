@@ -1,0 +1,22 @@
+@startuml
+
+(合法性检测) as V
+(卡牌检测) as CardV
+(角色检测) as PlayerV
+(按钮检测) as BtnV
+(确定检测) as OKBtnV
+(取消检测) as CancelBtnV
+(技能按钮检测) as SkillBtnV
+(视为技检测) as VSBtnV
+(主动技检测) as ASBtnV
+
+CardV --|> V
+PlayerV --|> V
+BtnV --|> V
+OKBtnV --|> BtnV
+CancelBtnV --|> BtnV
+SkillBtnV --|> BtnV
+VSBtnV --|> SkillBtnV
+ASBtnV --|> SkillBtnV
+
+@enduml

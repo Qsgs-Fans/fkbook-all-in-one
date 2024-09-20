@@ -8,3 +8,4 @@
    debug.rst
    eventstack.rst
    exppattern.rst
+   uirewrite.rst
