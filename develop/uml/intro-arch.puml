@@ -1,0 +1,59 @@
+@startuml
+skinparam lineType ortho
+skinparam componentStyle rectangle
+'left to right direction
+
+component "Base" as base {
+  [Lua核心(lua/core)] as Core
+  [客户端] as Client
+  [服务端] as Server
+}
+[C++底层] as cpp
+() "fk_ex.lua" as API
+[拓展包] as Extension
+
+Core --> cpp
+Client --> Core
+Server --> Core
+Client -[hidden]r- Server
+base -u- API
+Extension -- API
+
+note left of cpp
+  拓展包管理、网络连接与通信协议
+  用户管理、房间管理与调度
+  数据库、与Lua和QML交互的代码
+end note
+
+note as N1
+  武将、技能、卡牌、游戏模式基类的定义
+  Engine，保存所有已加载的上述内容
+  游戏房间与UI逻辑的模拟
+  以及调试器等其他实用组件、第三方库
+end note
+
+N1 .. Core
+
+note as N2 
+  界面代码，供QML调用的Lua函数等
+  用于处理服务端信息并交由玩家进行交互的代码
+  一个游戏房间，表示玩家（客户端）当前的房间
+end note
+
+N2 .. Client
+
+note right of Server
+  事件的结算规则，触发时机的触发，各类预定义的事件
+  所有的游戏房间，游戏房间的调度规则
+  与玩家进行交互，或者令机器人作出决策的代码
+end note
+
+note right of API
+  仿照太阳神三国杀设计的用于拓展的API
+end note
+
+note right of Extension
+  各类自定义的武将、技能、卡牌、模式，以及更多……
+end note
+@enduml
+

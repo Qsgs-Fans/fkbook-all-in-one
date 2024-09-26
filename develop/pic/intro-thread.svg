@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg width="202mm" height="110mm" version="1.1" viewBox="0 0 202 110" xmlns="http://www.w3.org/2000/svg">
+ <g transform="translate(-6 -6.4704)">
+  <g transform="matrix(.99907 0 0 1 -.46058 0)">
+   <rect id="mainthr" x="10.47" y="10.47" width="192.54" height="29.059" fill="#faa"/>
+   <text transform="matrix(.26207 0 0 .26458 12.222 -2.6275)" fill="#000000" font-family="sans-serif" font-size="40px" style="line-height:1.25;shape-inside:url(#rect3);white-space:pre" xml:space="preserve"><tspan x="62.775391" y="126.84258">处理登录、聊天等与游戏无关之事</tspan></text>
+   <text transform="matrix(.26458 0 0 .26458 -2.4146 -4.7211)" fill="#000000" font-family="sans-serif" font-size="26.667px" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25;shape-inside:url(#rect1);white-space:pre" xml:space="preserve"><tspan x="52.240234" y="83.477768">主线程</tspan></text>
+  </g>
+  <g transform="translate(-.47036 34.53)">
+   <rect x="10.47" y="10.47" width="192.36" height="29.059" fill="#aaecff"/>
+   <rect transform="translate(.47036 -34.53)" x="14.372" y="56.526" width="56.931" height="12.77" fill="#ffe680"/>
+   <text transform="matrix(.26458 0 0 .26458 6.3573 -35.317)" fill="#000000" font-family="sans-serif" font-size="26.667px" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25;shape-inside:url(#rect5);white-space:pre" xml:space="preserve"><tspan x="62.232422" y="252.38988">异步处理协程</tspan></text>
+   <text transform="matrix(.26458 0 0 .26458 -2.4146 -4.7211)" fill="#000000" font-family="sans-serif" font-size="26.667px" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25;shape-inside:url(#rect1-9);white-space:pre" xml:space="preserve"><tspan x="52.240234" y="83.477768">游戏线程1</tspan></text>
+   <g transform="translate(63.195 -.00012686)">
+    <rect transform="translate(.47036 -34.53)" x="14.372" y="56.526" width="56.931" height="12.77" fill="#ffe680"/>
+    <text transform="matrix(.26458 0 0 .26458 7.4576 -35.317)" fill="#000000" font-family="sans-serif" font-size="26.667px" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25;shape-inside:url(#rect7);white-space:pre" xml:space="preserve"><tspan x="62.232422" y="252.38988">协程 Room1</tspan></text>
+   </g>
+   <g transform="translate(126.2 -.00012686)">
+    <rect transform="translate(.47036 -34.53)" x="14.372" y="56.526" width="56.931" height="12.77" fill="#ffe680"/>
+    <text transform="matrix(.26458 0 0 .26458 6.3576 -35.317)" fill="#000000" font-family="sans-serif" font-size="26.667px" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25;shape-inside:url(#rect9);white-space:pre" xml:space="preserve"><tspan x="62.232422" y="252.38988">协程 Room2</tspan></text>
+   </g>
+  </g>
+  <g transform="translate(-.47036 69.53)">
+   <rect x="10.47" y="10.47" width="192.36" height="29.059" fill="#aaecff"/>
+   <rect transform="translate(.47036 -34.53)" x="14.372" y="56.526" width="56.931" height="12.77" fill="#ffe680"/>
+   <text transform="matrix(.26458 0 0 .26458 6.3573 -35.317)" fill="#000000" font-family="sans-serif" font-size="26.667px" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25;shape-inside:url(#rect15);white-space:pre" xml:space="preserve"><tspan x="62.232422" y="252.38988">异步处理协程</tspan></text>
+   <text transform="matrix(.26458 0 0 .26458 -2.4146 -4.7211)" fill="#000000" font-family="sans-serif" font-size="26.667px" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25;shape-inside:url(#rect16);white-space:pre" xml:space="preserve"><tspan x="52.240234" y="83.477768">游戏线程2，当房间数超过最大值时创建新线程</tspan></text>
+   <g transform="translate(63.195 -.00012686)">
+    <rect transform="translate(.47036 -34.53)" x="14.372" y="56.526" width="56.931" height="12.77" fill="#ffe680"/>
+    <text transform="matrix(.26458 0 0 .26458 7.4576 -35.317)" fill="#000000" font-family="sans-serif" font-size="26.667px" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25;shape-inside:url(#rect17);white-space:pre" xml:space="preserve"><tspan x="62.232422" y="252.38988">协程 Room1</tspan></text>
+   </g>
+   <g transform="translate(126.2 -.00012686)">
+    <rect transform="translate(.47036 -34.53)" x="14.372" y="56.526" width="56.931" height="12.77" fill="#ffe680"/>
+    <text transform="matrix(.26458 0 0 .26458 6.3576 -35.317)" fill="#000000" font-family="sans-serif" font-size="26.667px" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25;shape-inside:url(#rect18);white-space:pre" xml:space="preserve"><tspan x="62.232422" y="252.38988">协程 Room2</tspan></text>
+   </g>
+  </g>
+ </g>
+</svg>
