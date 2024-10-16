@@ -53,6 +53,7 @@ lua_source_comment_prefix = '---'
 lua_source_use_emmy_lua_syntax = True
 lua_source_private_prefix = '_'
 plantuml_output_format = 'svg_img'
+plantuml_syntax_error_image = True
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
