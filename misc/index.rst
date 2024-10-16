@@ -9,3 +9,4 @@
    eventstack.rst
    exppattern.rst
    uirewrite.rst
+   luckcard.rst
