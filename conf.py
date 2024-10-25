@@ -34,6 +34,7 @@ extensions = [
   'sphinx.ext.mathjax',
   'sphinx.ext.ifconfig',
   'sphinx.ext.githubpages',
+  'sphinx.ext.imgconverter',
   'sphinxcontrib.luadomain',
   'sphinxcontrib.plantuml',
   'sphinx_lua',
@@ -53,6 +54,7 @@ lua_source_comment_prefix = '---'
 lua_source_use_emmy_lua_syntax = True
 lua_source_private_prefix = '_'
 plantuml_output_format = 'svg_img'
+plantuml_latex_output_format = 'png'
 plantuml_syntax_error_image = True
 
 # Add any paths that contain templates here, relative to this directory.

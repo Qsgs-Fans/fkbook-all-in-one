@@ -16,10 +16,7 @@ build:
 
   apt_packages:
     - plantuml
-    # You can also specify other tool versions:
-    # nodejs: "20"
-    # rust: "1.70"
-    # golang: "1.20"
+    - fonts-noto-cjk
 
 # Build documentation in the "docs/" directory with Sphinx
 sphinx:
