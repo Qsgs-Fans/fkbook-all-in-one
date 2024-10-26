@@ -19,7 +19,7 @@
 
 向Server发送reply不用多说，重点在于它需要模拟出客户端的UI界面（如果确实存在UI界面，\
 那么还需要将数据发送到真实的UI界面中），这个“模拟”包括控制各种模拟UI组件的\
-enabled、selected属性等等。真实的UI只负责实际显示，因此逻辑本身就转移到了Lua中。
+enabled、selected属性等等。真实的UI只负责实际显示，如此就将UI的显示逻辑转移到了Lua中。
 
 RequestHandler主要分为以下部分：
 
