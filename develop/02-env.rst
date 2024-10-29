@@ -122,7 +122,47 @@ Arch Linux：
 MacOS
 ~~~~~~
 
-大致与Windows类似，但尚且缺少确切的方案。谁v我台Mac
+安装依赖：
+.. code:: sh
+
+   $ brew install openssl # 安装OpenSSL
+   $ brew install libgit2@1.8.3 # 安装libgit2
+   $ brew install qt6 # 安装qt6 
+   $ brew install cmake # 安装cmake
+   $ brew install swig # swig
+   $ brew install lua@5.4.7 # lua
+   
+
+如果libgit2 和lua之前安装过，请将下面路径中的版本号修改为对应的版本号。
+安装好依赖后，需要将路径倒入到CMakeLists.txt 中，具体如下：
+
+.. code:: cmake
+   
+   ...
+   set(LIBGIT2_DIR "/opt/homebrew/Cellar/libgit2/1.8.3")
+   set(LUA_DIR "/opt/homebrew/Cellar/lua/5.4.7")
+   
+   ... 
+   include_directories("${LUA_DIR}/include/lua")
+   include_directories("${LIBGIT2_DIR}/include")
+
+   ...
+   link_directories("${LIBGIT2_DIR}/lib")
+   link_directories("${LUA_DIR}/lib")
+
+   target_link_libraries(FreeKill PRIVATE git2)
+
+这样cmake就可以自动找到依赖并生成项目了。
+
+生成项目
+
+.. code:: sh
+
+   $ mkdir build && cd build
+   $ cmake ..
+   $ make -j8
+
+也可以参考 [CMakeLists.txt.OSX](https://github.com/Qsgs-Fans/FreeKill/blob/master/CMakeLists.txt.OSX) 文件。
 
 --------------
 
