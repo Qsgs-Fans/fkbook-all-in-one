@@ -123,6 +123,7 @@ MacOS
 ~~~~~~
 
 安装依赖：
+
 .. code:: sh
 
    $ brew install openssl # 安装OpenSSL
@@ -138,15 +139,15 @@ MacOS
 
 .. code:: cmake
    
-   ...
+   # ...
    set(LIBGIT2_DIR "/opt/homebrew/Cellar/libgit2/1.8.3")
    set(LUA_DIR "/opt/homebrew/Cellar/lua/5.4.7")
    
-   ... 
+   # ... 
    include_directories("${LUA_DIR}/include/lua")
    include_directories("${LIBGIT2_DIR}/include")
 
-   ...
+   # ...
    link_directories("${LIBGIT2_DIR}/lib")
    link_directories("${LUA_DIR}/lib")
 

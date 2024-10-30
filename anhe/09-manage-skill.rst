@@ -68,10 +68,10 @@
     这个函数的原型是: ``function(self, cards)``, 它需要两个参数，分别是self, cards。
 - ``enabled_at_play`` 表示约定是否允许主动使用视为的卡牌。\
     这个函数的原型是: ``function(self, player)``, 它需要两个参数，分别是self, player。
-- ``enabled_at_response``表示约定是否允许使用视为的卡牌进行响应。
-    这个函数的原型是: ``function(self, player, pattern)``。第三个参数pattern用于对特定响应方式做筛选。
+- ``enabled_at_response`` 表示约定是否允许使用视为的卡牌进行响应。
+    这个函数的原型是: ``function(self, player, pattern)`` 。第三个参数pattern用于对特定响应方式做筛选。
 
-值得一提的是，锁定视为技的创建方法，是 ``fk.CreateFilterSkill``，原型是：
+值得一提的是，锁定视为技的创建方法，是 ``fk.CreateFilterSkill`` ，原型是：
 
 .. code:: lua
   
@@ -106,10 +106,10 @@ PS：我们之前设计的美王技能也是一个触发技哦～
 - ``frequency``: 表示这个触发技的类型，例如锁定技、限定技、觉醒技等。
 - ``events``: 表示这个触发技的触发时机，例如受到伤害后等，需要用lua的表形式提供参数，如events = {fk.Damaged}，表示受到伤害后这个时机。  
 - ``can_trigger``: 是一个规定这个触发技在触发时机下满足何等条件可被触发的函数。\
-    这个函数的原型是: ``function(self, player, event, target, data)``, 它需要五个参数，分别是self, player, event, target, data。
+    这个函数的原型是: ``function(self, player, event, target, data)`` , 它需要五个参数，分别是self, player, event, target, data。
 - ``on_cost`` 是一个规定这个触发技触发时需要执行对应消耗的函数。\
     这个函数的原型是同can_trigger保持一致。
-- ``on_use``是一个规定这个触发技触发后执行对应效果的函数。
+- ``on_use`` 是一个规定这个触发技触发后执行对应效果的函数。
     这个函数的原型是同can_trigger保持一致。
 
 举例来说，如果一个触发技能是：当你受到伤害后，你可以弃置一张牌，摸一张牌。\
@@ -144,13 +144,13 @@ PS：我们之前设计的美王技能也是一个触发技哦～
 
 ☆ 距离修改技，就是跟计算距离相关的技能了，之前我们设计过那个腾云技能就属于这一类，应该是很熟悉了。
 
-创建方法我们也已经使用过了，就是： ``fk.CreateDistanceSkill{name, correct_func}``。
+创建方法我们也已经使用过了，就是： ``fk.CreateDistanceSkill{name, correct_func}``
 
 所以这部分就忽略掉吧……
 
 ☆ 手牌上限技，就是用来修改手牌上限的技能嘛，很好理解。像血裔、宗室之类的都算的。
 
-创建手牌上限技用到的方法是 ``fk.CreateMaxCardsSkill``，它的原型是：
+创建手牌上限技用到的方法是 ``fk.CreateMaxCardsSkill`` ，它的原型是：
 
 .. code:: lua
 
@@ -174,14 +174,16 @@ PS：我们之前设计的美王技能也是一个触发技哦～
 还记得Room老兄吧？没错，handleAddLoseSkills依然是它的一个成员函数（早就说过我们会经常拜托Room兄办事的……）
 
 .. code:: lua
+
   room:handleAddLoseSkills(player, skill_names, source_skill, sendlog, no_trigger)
 
 其中：
-① player表示获得技能的角色。
-② skill_names表示待获得技能的名字，传入的就是我们上面所提到了name啦。\
-特别地，如果要失去某些技能的话，只需要在技能的名字前面加上一个 ``-`` 字符就可以啦，非常方便！\
-举例来说，我想要获得那个男人的技能激昂，那么传入的字符串应该就是"jiang"，而如果要失去激昂，那么应该传入“-jiang”。
-③ source_skill表示待获得技能的技能来源，就是通过那个技能使角色获得了这个技能，日常可以设为nil，则为空。
-④ sendLog表示是否在对局中要发送获得或失去技能的报告。
-⑤ no_trigger表示是否在对局中要触发获得或失去技能的对应时机。
+1. player表示获得技能的角色。
+2. skill_names表示待获得技能的名字，传入的就是我们上面所提到了name啦。
+   特别地，如果要失去某些技能的话，只需要在技能的名字前面加上一个 ``-`` 字符就可以啦，非常方便！
+   举例来说，我想要获得那个男人的技能激昂，那么传入的字符串应该就是"jiang"，而如果要失去激昂，那么应该传入“-jiang”。
+
+3. source_skill表示待获得技能的技能来源，就是通过那个技能使角色获得了这个技能，日常可以设为nil，则为空。
+4. sendLog表示是否在对局中要发送获得或失去技能的报告。
+5. no_trigger表示是否在对局中要触发获得或失去技能的对应时机。
 

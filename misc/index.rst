@@ -10,3 +10,4 @@
    exppattern.rst
    uirewrite.rst
    luckcard.rst
+   ai.rst
