@@ -34,4 +34,4 @@
    anhe/index.rst
    develop/index.rst
    misc/index.rst
-   api/index.rst
+.. api/index.rst

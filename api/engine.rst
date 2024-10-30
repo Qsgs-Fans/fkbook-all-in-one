@@ -1,4 +1,0 @@
-Engine
-========
-
-.. lua:autoclass:: Engine

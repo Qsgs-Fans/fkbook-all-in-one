@@ -1,4 +1,0 @@
-AbstractRoom
-==============
-
-.. lua:autoclass:: AbstractRoom

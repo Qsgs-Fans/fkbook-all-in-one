@@ -1,4 +1,0 @@
-GameMode
-=========
-
-.. lua:autoclass:: GameMode

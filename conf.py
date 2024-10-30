@@ -35,14 +35,14 @@ extensions = [
   'sphinx.ext.ifconfig',
   'sphinx.ext.githubpages',
   'sphinx.ext.imgconverter',
-  'sphinxcontrib.luadomain',
+  #'sphinxcontrib.luadomain',
   'sphinxcontrib.plantuml',
-  'sphinx_lua',
+  # 'sphinx_lua',
 
 ]
 
 lua_source_path = [
-  fk_repo_path + "/freekill-core/lua",
+  #fk_repo_path + "/freekill-core/lua",
   #fk_repo_path + "/freekill-core/standard",
   #fk_repo_path + "/freekill-core/standard_cards",
   #fk_repo_path + "/freekill-core/maneuvering",

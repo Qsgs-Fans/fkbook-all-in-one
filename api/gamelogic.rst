@@ -1,4 +1,0 @@
-GameLogic
-==========
-
-.. lua:autoclass:: GameLogic

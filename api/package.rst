@@ -1,4 +1,0 @@
-Package
-========
-
-.. lua:autoclass:: Package
