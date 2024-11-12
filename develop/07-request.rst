@@ -21,38 +21,13 @@
 那么还需要将数据发送到真实的UI界面中），这个“模拟”包括控制各种模拟UI组件的\
 enabled、selected属性等等。真实的UI只负责实际显示，如此就将UI的显示逻辑转移到了Lua中。
 
-RequestHandler主要分为以下部分：
+RequestHandler的工作流程大约如下：
 
-- RequestHandler:setup()
+.. todo::
 
-  用以初始化整个场景，包括向客户端传达初始UI情况。
+   对下面的这一套，画个流程图
 
-- RequestHandler:update(elemType, id, action, data)
-
-  当客户端的UI被干涉时，将调用正在进行中的RequestHandler的这个函数。
-
-  若该函数返回\ ``true``\ ，则终止RequestHandler。
-
-- RequestHandler:finish()
-
-  RequestHandler终止后调用此函数，用以清理一些剩余的UI元素。
-
-- RequestHandler.scene
-
-  承载UI元素的容器，负责承载客户端传入的UI变化和向客户端传出UI所需要的变化。
-
-  - Scene:update(elemType, id, newData)
-
-    通过UI变化改变对应元素的属性，同时向其所属的RequestHandler传输相应的变化。
-
-  - Scene:notifyUI()
-
-    一般由其所属的RequestHandler或更上层部分调用。
-
-    用以通过\ ``ClientInstance:notifyUI``\
-    向客户端传出\ ``RequestHandler.change``\ 所记载的变化。
-
-- RequestHandler.change
-
-  承载等待传出至客户端的UI变化
-
+- 客户端收到需要创建RequestHandler的消息
+- 客户端创建RequestHandler
+- RequestHandler创建完之后调用notifyUI，将变化反映到实际的界面
+- 每当ui产生操作（点击等等）都会触发一次和RequestHandler有关的调用，调用的最后UI状态会变化，并再次通过notifyUI反映到客户端

@@ -56,6 +56,7 @@ lua_source_private_prefix = '_'
 plantuml_output_format = 'svg_img'
 plantuml_latex_output_format = 'png'
 plantuml_syntax_error_image = True
+todo_include_todos = True
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

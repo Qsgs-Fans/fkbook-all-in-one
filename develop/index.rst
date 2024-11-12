@@ -11,3 +11,4 @@
    05-createroom.rst
    06-gamelogic.rst
    07-request.rst
+   08-ai.rst
