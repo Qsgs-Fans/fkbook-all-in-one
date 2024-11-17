@@ -11,3 +11,4 @@
    uirewrite.rst
    luckcard.rst
    ai.rst
+   triggerdata.rst
