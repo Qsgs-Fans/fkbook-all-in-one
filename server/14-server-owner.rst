@@ -277,18 +277,44 @@ reloadconf（简写为r）可以重新加载服务器端的配置文件而无须
      AND general = 'diaochan'
      ORDER BY total DESC LIMIT 10;
 
-查游玩时长
-~~~~~~~~~~~
+查注册、登录时间以及游玩时长
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 查询玩家notify的注册时间、上次登陆与游戏时长：
 
 .. code:: sql
 
-  SELECT name, ROUND(totalGameTime / 3600.0, 2) || " h" AS 'Time',
+  SELECT userinfo.id as Id, name, ROUND(totalGameTime / 3600.0, 2) || " h" AS 'Time',
     DATETIME(registerTime, 'unixepoch', 'localtime') AS RegTime,
     DATETIME(lastLoginTime, 'unixepoch', 'localtime') as LastLogTime
     FROM usergameinfo, userinfo
     WHERE userinfo.id = usergameinfo.id AND userinfo.name = 'notify';
+
+查询近7天以来登录到服务器的玩家列表：
+
+.. code:: sql
+
+  SELECT userinfo.id as Id, name, ROUND(totalGameTime / 3600.0, 2) || " h" AS 'Time',
+    DATETIME(registerTime, 'unixepoch', 'localtime') AS RegTime,
+    DATETIME(lastLoginTime, 'unixepoch', 'localtime') as LastLogTime
+    FROM usergameinfo, userinfo
+    WHERE userinfo.id = usergameinfo.id AND
+      DATE(lastLoginTime, 'unixepoch', 'localtime') >=
+      DATE('now', 'localtime', '-7 days') AND
+      DATE(lastLoginTime, 'unixepoch', 'localtime') <
+      DATE('now', 'localtime', 'start of day', '+1 days');
+
+想要方便的查看所有人的游玩信息，可以创建一个视图：
+
+.. code:: sql
+
+   CREATE VIEW IF NOT EXISTS gameinfoView AS
+     SELECT userinfo.id as Id, name, ROUND(totalGameTime / 3600.0, 2) || " h" AS 'Time',
+       DATETIME(registerTime, 'unixepoch', 'localtime') AS RegTime,
+       DATETIME(lastLoginTime, 'unixepoch', 'localtime') as LastLogTime
+       FROM usergameinfo, userinfo
+       WHERE userinfo.id = usergameinfo.id;
+
 
 查询全服游玩时长排行：
 
