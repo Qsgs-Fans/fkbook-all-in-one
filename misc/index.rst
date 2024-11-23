@@ -12,3 +12,4 @@
    luckcard.rst
    ai.rst
    triggerdata.rst
+   triggerevent.rst

@@ -191,7 +191,7 @@ from? ServerPlayer @ 伤害来源
 .. caution::
     
     该data里面的来源属性名是from而不是who，且from类型为ServerPlayer而非player.id。
-    若受到无来源伤害，则该属性为空。
+    若受到无来源伤害，则该属性为空。from=nil
 
 to ServerPlayer @ 伤害目标
 

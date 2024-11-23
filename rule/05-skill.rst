@@ -14,8 +14,16 @@
 ::
 
   以该角色为承担者，触发“技能生效时”（可能导致事件终止）
+  fk.SkillEffect = 81  @技能生效时
+
   执行技能的效果
+
   以该角色为承担者，触发“技能生效后”
+  fk.AfterSkillEffect = 82  @技能生效后
+
+  这两个时机的data都是本次发动的skill。
+  如果有技能拥有main_skill属性时，则data为skill.main_skill。
+  data = skill.main_skill and skill.main_skill or skill
 
 终止技能生效事件自然会令技能终止生效，但是视为技是一个例外，因为视为技的动作
 只是将一张牌转化成另外的牌而已。终止视为技会导致无事发生，或许此牌作废才是较好
