@@ -13,3 +13,4 @@
    ai.rst
    triggerdata.rst
    triggerevent.rst
+   ipv6.rst
