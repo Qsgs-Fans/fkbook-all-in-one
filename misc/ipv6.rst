@@ -4,6 +4,7 @@
 要通过ipv6部署新月杀服务器，首先需要检查自己服务器是否支持ipv6(以Debian12为例)
 
 .. code:: sh
+
   # 检查服务器是否支持IPv6
   $ sudo apt update
   $ sudo apt install -y iptables
@@ -12,12 +13,14 @@
 如果支持ipv6，则会输出ipv6的具体规则
 
 .. code:: sh
+
   # 查看本机ip
   $ sudo ip -6 addr show 
 
 这里以本人服务器为例：
 
 .. code:: sh
+
   deb@k2450:~$ sudo ip -6 addr
   1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 state UNKNOWN qlen 1000
       inet6 ::1/128 scope host noprefixroute 
@@ -37,6 +40,7 @@
 在确认了自己的ipv6的地址之后，首先第一件事便是开放端口
 
 .. code:: sh
+
   # 开放ipv6的 tcp udp 端口（以默认9527为例）
 
   # 开启入站TCP端口9527
@@ -69,6 +73,7 @@
 对于Debian/Ubuntu可以按照下面的方法保存配置文件
 
 .. code:: sh
+
   #!/bin/sh
   /sbin/iptables-restore < /etc/iptables/rules.v4
   /sbin/ip6tables-restore < /etc/ip6tables/rules.v6
