@@ -22,8 +22,16 @@ $ git clone https://gitee.com/Qsgs-Fans/fkbook-all-in-one
 $ cd fkbook-all-in-one
 $ git clone https://gitee.com/notify-ctrl/FreeKill
 
-$ python -m venv .venv
-$ source .venv/bin/activate # 这条命令以后每次都要执行一下
+$ python -m venv .venv #若已经clone则从这条开始构建网页
+
+
+#若你的操作系统为Linux执行这条
+$ source .venv/bin/activate  
+#若你的操作系统为windows，则执行这条
+$ source .venv/Scripts/activate 
+#source代码今后每次运行都要执行
+
+
 $ pip install -r requirements.txt
 $ make html # 有make的时候使用这个
 # 若未安装make则使用这个命令
