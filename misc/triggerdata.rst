@@ -463,6 +463,61 @@ num integer @ 体力上限变化量
     可为正，可为负。具体参考HpChangedData里面的num。
 
 
+
+CardEffectEvent 卡牌效果的数据
+-------------------------------------------
+
+from? integer @ 卡牌使用者
+
+to integer @ 卡牌的当前目标id
+
+subTargets? integer[] @ 子目标（借刀！）
+
+tos TargetGroup @ 卡牌目标组
+
+card Card @ 卡牌本牌
+
+toCard? Card @ 卡牌目标
+
+responseToEvent? CardEffectEvent @ 响应事件目标
+
+nullifiedTargets? integer[] @ 对这些角色无效
+
+extraUse? boolean @ 是否不计入次数
+
+disresponsiveList? integer[] @ 这些角色不可响应此牌
+
+unoffsetableList? integer[] @ 这些角色不可抵消此牌
+
+additionalDamage? integer @ 额外伤害值（如酒之于杀）
+
+additionalRecover? integer @ 额外回复值
+
+extra_data? any @ 额外数据（如目标过滤等）
+
+customFrom? integer @ 新使用者
+
+cardsResponded? Card[] @ 响应此牌的牌
+
+disresponsive? boolean @ 是否不可响应
+
+unoffsetable? boolean @ 是否不可抵消
+
+isCancellOut? boolean @ 是否被抵消
+
+fixedResponseTimes? table<string, integer>|integer @ 额外响应请求
+
+fixedAddTimesResponsors? integer[] @ 额外响应请求次数
+
+prohibitedCardNames? string[] @ 这些牌名的牌不可响应此牌
+
+.. note::
+
+    这里的参数效果大部分都可以在CardUseStruct里面找到，故而此处不再赘述。
+
+
+
+
 SkillEffectEvent 技能效果的数据
 ------------------------------
 
