@@ -15,3 +15,4 @@
    triggerevent.rst
    new_trigevent.rst
    ipv6.rst
+   arrange.rst
