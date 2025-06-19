@@ -16,6 +16,5 @@
    07-comment-log.rst
    08-distance.rst
    09-manage-skill.rst
-   10-change-maxcard.rst
-   11-change-hp.rst
-   12-change-game-process.rst
+   10-change-hp.rst
+   11-change-game-process.rst

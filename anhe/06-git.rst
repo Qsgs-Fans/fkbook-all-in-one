@@ -149,7 +149,7 @@ Git的安装流程就是不断无脑的点下一步了，下一步下一步下�
 
 用文件管理器打开自己正在制作的那个拓展包的文件夹，右键Git bash here打开命令行。
 
-.. figure:: pic/6-2.jpg
+.. figure:: pic/6-2.png
    :align: center
 
    打开Git bash
@@ -286,7 +286,7 @@ origin，这是因为\ ``git clone``\ 的时候默认会给远程仓库取这个
 
 复制了LICENSE文件之后文件夹内长这样：
 
-.. figure:: pic/6-7.jpg
+.. figure:: pic/6-7.png
    :align: center
    
    复制了LICENSE之后

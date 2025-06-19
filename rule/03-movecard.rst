@@ -40,10 +40,10 @@
 
 移动牌涉及两个触发时机：卡牌移动前、卡牌移动后。都没有承担者。
 
-fk.BeforeCardsMove = 9       @卡牌移动前
+fk.BeforeCardsMove      @卡牌移动前
 （若在触发本时机技能的on_use函数中return true则导致本事件与后续此事件流程终止）
 
-fk.AfterCardsMove = 10       @卡牌移动后
+fk.AfterCardsMove      @卡牌移动后
 
 ::
 
@@ -52,8 +52,8 @@ fk.AfterCardsMove = 10       @卡牌移动后
   将对应的卡牌从一处移动到另一处
   触发“卡牌移动后”
 
-  两个时机都没有承担者，data为CardsMoveStruct。
-  具体参考解析TriggerData里的CardsMoveStruct。
+  两个时机都没有承担者，data为MoveCardsData，继承MoveCardsDataSpec。
+  具体参考解析TriggerData里的MoveCardsDataSpec。
 
 其中，卡牌移动前这个时机可能会有一些触发技修改移牌信息。
 
@@ -65,14 +65,14 @@ fk.AfterCardsMove = 10       @卡牌移动后
 摸牌流程
 -----------
 
-fk.BeforeDrawCard = 76  @摸牌前
+fk.BeforeDrawCard      @摸牌前
 （若在触发本时机技能的on_use函数中return true则导致本事件与后续此事件流程终止）
 
 ::
 
   触发“摸牌前”
   根据摸牌信息，将牌堆中相关的牌移动到角色手中
-  “摸牌前”中的data详情参考解析:TriggerData中的DrawCardStruct。
+  “摸牌前”中的data为DrawData，继承DrawDataSpec
 
 
 摸牌是移动的一种，但是它特地增设了“摸牌前”时机。这是为了实现从牌堆底摸牌。

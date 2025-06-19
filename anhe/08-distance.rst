@@ -10,36 +10,39 @@
 
 .. code:: lua
 
-  local mashu = fk.CreateDistanceSkill{
+  local mashu = fk.CreateSkill{
     name = "mashu",
-    frequency = Skill.Compulsory,
+    tags = { Skill.Compulsory },
+  }
+
+  mashu:addEffect("distance", {
+    name = "mashu",
     correct_func = function(self, from, to)
-      if from:hasSkill(self) then
+      if from:hasSkill(mashu.name) then
         return -1
       end
     end,
-  }
+  })
 
-可以看到，创建距离修改技能需要用到一个叫做 ``fk.CreateDistanceSkill``
-的函数，其原型是：
+
+  return mashu
+
+可以看到，创建距离修改技能需要用到一个叫做 ``"distance"``
+的关键字，其类型是：
 
 .. code:: lua
   
-  fk.CreateDistanceSkill{
-   name = "xxx",
-   frequency = xxx,
-   correct_func = xxx,
- }
+  ---@class DistanceSpec: StatusSkillSpec
+  ---@field public correct_func? fun(self: DistanceSkill, from: Player, to: Player): integer?
+  ---@field public fixed_func? fun(self: DistanceSkill, from: Player, to: Player): integer?
 
-这个方法有三个参数，name, frequency和correct_func。
+距离技有两个参数，correct_func和fixed_func。
 
-- ``name``: 表示这个距离修改技能的名字；
-- ``frequency``: 技能的标签。一般来说修改距离的技能都是锁定技啦，填入\
-  ``Skill.Compulsory`` 就表示是锁定技了。
-- ``correct_func``: 是一个规定距离修改标准的函数，告诉电脑具体怎样计算距离。
+- ``fixed_func``: 是一个固定距离的函数，告诉电脑具体的距离数值是多少，其返回的是一个距离最终值。；
+- ``correct_func``: 是一个规定距离修改标准的函数，告诉电脑具体怎样计算距离，其返回的是一个距离修改值。
 
 其中这个 ``correct_func`` 函数的原型是: ``function(self, from, to)``
-它需要三个参数，分别是self, from和to。
+它需要三个参数，分别是self, from和to。 ``fixed_func``同理，下面以``correct_func``举例
 
 - self：就是技能本身啦；
 - from：是位于距离计算的起点处的那个角色。因为距离计算是有方向性的呀，
@@ -68,17 +71,25 @@
 
 .. code:: lua
 
-  local tengyun = fk.CreateDistanceSkill{
-    name = "st__tengyun",
-    correct_func = function(self, from, to)
-      if from:hasSkill(self) then
-        return -5
-      end
-      if to:hasSkill(self) then
+   local tengyun = fk.CreateSkill{
+      name = "st__tengyun",
+      tags = { Skill.Compulsory },
+   }
+
+   tengyun:addEffect("distance", {
+     name = "st__tengyun",
+     correct_func = function(self, from, to)
+       if from:hasSkill(tengyun.name) then
+          return -5
+       end
+       if to:hasSkill(tengyun.name) then
         return 5
-      end
-    end,
-  }
+       end
+     end,
+   })
+
+
+   return tengyun
 
 别忘了用addSkill让悟空学会该技能！
 
@@ -96,8 +107,7 @@
 .. figure:: pic/8-1.jpg
    :align: center
 
-至于设计实现类似“与某名角色的距离始终为1”的效果， ``CreateDistanceSkill``\
-其实还提供了 ``fixed_func`` 这个参数，他和 ``correct_func`` 类似，\
-只是把之间的距离设为了固定值，这个就请自己探索吧！
+至于设计实现类似“与某名角色的距离始终为1”的效果\
+请使用``fixed_func``来实现，这方面就请自己探索吧！
 
 

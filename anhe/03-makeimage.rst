@@ -29,7 +29,7 @@ Gimp的安装也是很简单的，一路下一步就行了，视情况安装到D
 .. .. figure:: pic/3-1.jpg
    :align: center
    
-   这张如何？
+..   这张如何？
 
 OK，总之准备就绪。
 
@@ -115,3 +115,19 @@ OK，总之准备就绪。
    :align: center
 
    小头像哦
+
+
+如果想要创建自己的势力图的话，只需要把图片放到image/kingdom下面
+.. figure:: pic/3-kingdom.jpg
+   :align: center
+
+   可以看见有三个文件
+
+第一个文件是n_pigeon.png,这个是势力的图片，名称是n_pigeon，后缀是png，格式大小是设置为30x30像素。
+
+第二个文件是n_pigeon-back.png,这个是势力的背景图片，名称是"势力名称"-back，后缀是png，格式大小是设置为175x233像素。
+
+第三个文件是n_pigeon-magatama.png,这个是势力的勾玉图标，名称是"势力名称"-magatama，后缀是png，格式大小是设置为10x12像素。
+
+顺带提一嘴，卡牌的格式是90x130像素，后缀是png。
+除了武将图是jpg格式以外，扩展包内其他带图片的都是png格式。

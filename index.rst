@@ -35,5 +35,4 @@
    develop/index.rst
    spec/index.rst
    misc/index.rst
-   fine-tuning/index.rst
 .. api/index.rst

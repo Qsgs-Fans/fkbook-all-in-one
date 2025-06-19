@@ -1,4 +1,3 @@
 #sphinx-lua
 sphinxcontrib-plantuml
-myst-parser
 furo

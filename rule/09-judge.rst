@@ -11,25 +11,24 @@
 
   （主效果）
   以判定者为承担者，触发“判定开始时”
-  fk.StartJudge = 24   @判定开始时
+  fk.StartJudge    @判定开始时
 
   若未定义判定牌，则抽取牌堆顶一张牌作为判定牌
   对判定牌应用锁视技（视为判定者的牌）
   以判定为理由，将判定牌移动至处理区
   以判定者为承担者，触发“询问改判时”
-  fk.AskForRetrial = 25   @询问改判时
+  fk.AskForRetrial   @询问改判时
 
   以判定者为承担者，触发“改判结束时”
-  fk.FinishRetrial = 26   @改判结束时
+  fk.FinishRetrial    @改判结束时
 
   揭晓判定结果
   以判定者为承担者，触发“判定结束时”
   （若在触发本时机技能的on_use函数中return true则导致本事件与后续此事件流程终止）
 
-  fk.FinishJudge = 27    @判定结束时
+  fk.FinishJudge     @判定结束时
 
-  判定的相关时机的data为PindianStruct@拼点数据。
-  PindianStruct详情查看解析:TriggerData。 
+  判定的相关时机的data为JudgeData，继承JudgeDataSpec
 
 ::
 
@@ -79,31 +78,28 @@
   对询问名单内的每名角色依次执行：
     要求角色将一张手牌作为拼点牌并展示之
   将以上发起者和所有参与者的拼点牌置入处理区
+
   触发“拼点牌亮出时”（无承担者）
   fk.PindianCardsDisplayed = 70  @拼点牌亮出时
+
+  两个时机的data均为PindianData，继承PindianDataSpec
 
   对其他参与者内的每名角色依次执行：
     比较其与发起者的拼点牌点数大小（大于者赢，若相等则没有赢家）
     揭晓拼点结果
+
     触发“拼点结果确认时”（无承担者）
-    fk.PindianResultConfirmed = 71 @拼点结果确认时
-    本时机的data不是PindanStruct,注意！此处的pindianData为本次拼点数据，为PindanStruct类型。
-    data={
-      from = pindianData.from, @拼点发起者
-      to = to,     @当前拼点目标，注意 若多个同时拼点 to代表的是当前拼点目标。
-      fromCard = pindianData.fromCard, @拼点发起者拼点牌
-      toCard = result.toCard,  @被拼点者拼点牌
-      winner = result.winner, @拼点胜利者
-      reason = pindianData.reason, @拼点原因，一般是技能名。
-    }
+    fk.PindianResultConfirmed  @拼点结果确认时
+
+    本时机的data为SinglePindianData，继承SinglePindianDataSpec
 
   以发起者为承担者，触发“拼点结束时”
   （若在触发本时机技能的on_use函数中return true则导致本事件与后续此事件流程终止）
 
   fk.PindianFinished = 72 @拼点结束时
 
-  除了“拼点结果确认时”以外的拼点相关时机的data为PindanStruct
-  详解参考解析:TriggerData中的PindanStruct。
+  本时机data为PindianData，继承PindianDataSpec
+
 
 
 ::

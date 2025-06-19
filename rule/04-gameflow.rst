@@ -10,7 +10,7 @@
 这里指的是第一轮开始之前。仔细观察会发现，最开始的那阵子游戏显示为“第0轮”，
 这时还没有任何轮次发生过。
 此时可以触发“游戏准备时”，此时机无承担者，无data数据
-fk.GamePrepared = 78  @游戏准备时
+fk.GamePrepared   @游戏准备时
 
 
 1. 所有玩家随机排列座位。
@@ -33,8 +33,7 @@ fk.GamePrepared = 78  @游戏准备时
 
   从当前行动者开始，对每名角色:
     以该角色为承担者，触发“分发初始手牌前”
-    fk.DrawInitialCards = 13     @摸初始牌时
-    data={ num = 4 }。
+    fk.DrawInitialCards     @摸初始牌时
     该角色摸4张牌（不触发任何时机，摸牌数可能被修改）
 
   所有玩家选择是否使用手气卡，手气卡的作用是重新获得新的初始手牌
@@ -42,10 +41,7 @@ fk.GamePrepared = 78  @游戏准备时
   从当前行动者开始，对每名角色:
     以该角色为承担者，触发“分发初始手牌后”
     fk.AfterDrawInitialCards = 14   @在摸初始牌后（在手气卡后）
-    data={num=4，luckTime=nil}
-    
-    luckTime代表了手气卡次数，但是在本时机时，手气卡阶段已经执行完毕了
-    因此，此属性值为nil
+    两个时机的data是DrawInitialData，继承DrawInitialDataSpec类型。
 
 
 需要注意的是，初始手牌的摸牌不触发移动牌相关时机（移牌前、移牌后）。
@@ -65,11 +61,11 @@ fk.GamePrepared = 78  @游戏准备时
 ::
 
   若这是第一轮，则:
-    以当前行动者为承担者，触发“游戏开始时”
-    fk.GameStart = 2   @游戏开始时
+  以当前行动者为承担者，触发“游戏开始时”
+  fk.GameStart   @游戏开始时
 
   以当前行动者为承担者，触发“轮次开始时”
-  fk.RoundStart = 28   @轮次开始时
+  fk.RoundStart   @轮次开始时
 
 
   无限循环:
@@ -79,10 +75,10 @@ fk.GamePrepared = 78  @游戏准备时
       结束此循环
 
   以当前行动者的上家为承担者，触发“轮次结束时”，“轮次结束后”
-  fk.RoundEnd = 29    @轮次结束时
-  fk.AfterRoundEnd = 85   @轮次结束后
+  fk.RoundEnd    @轮次结束时
+  fk.AfterRoundEnd   @轮次结束后
 
-  触发“游戏开始时”，还有相关的轮次时机时，都是没有data数据的
+  触发“游戏开始时”，还有相关的轮次时机时，data都是RoundData，继承RoundDataSpec类型的数据
 
 在上述的循环中，所有角色都确保能执行一个回合。当出现座位号变小的情况时，
 说明此时已经执行完一轮了，这时轮次事件结束。
@@ -93,14 +89,20 @@ fk.GamePrepared = 78  @游戏准备时
 回合事件包含了前置判断、主效果和清理效果。三种效果的结算逻辑如下：
 
 ::
+  回合准备：
 
   （此为前置判断）
   若该角色处于休整状态，则将其休整轮数-1，若完成休整则复活该角色
   若该角色已阵亡，则判断未通过
+
+  以该角色为承担者，触发“回合准备时”（这个时机返回true会导致判断未通过，跳过本回合）
+  fk.PreTurnStart   @回合准备时
+
   若该角色的武将牌背面向上，则将武将牌翻面至正面向上，然后判断未通过
-  以该角色为承担者，触发“回合开始前”（这个时机可能导致判断未通过）
-  fk.BeforeTurnStart = 83   @回合开始前
-  数据data为TurnStruct
+
+  以该角色为承担者，触发“回合开始前”（这个时机返回true会导致判断未通过，跳过本回合）
+  fk.BeforeTurnStart   @回合开始前
+
 
   判断顺利通过。
 
@@ -108,33 +110,32 @@ fk.GamePrepared = 78  @游戏准备时
 
   （此为主效果，需通过前置判断方可执行）
   以该角色为承担者，触发“回合开始时”
-  fk.TurnStart = 3    @回合开始时
-  数据data为TurnStruct
+  fk.TurnStart     @回合开始时
+  回合事件的data均为TurnData，继承TurnDataSpec
 
   令所有阶段为[准备阶段，判定阶段，摸牌阶段，出牌阶段，弃牌阶段，结束阶段]
   对所有阶段中的每个阶段，依次执行:
     将该角色的阶段设为该阶段
     若阶段未被跳过，则:
       以该角色为承担者，触发“阶段切换时”（可能导致阶段被跳过）
-      （若在触发本时机技能的on_use函数中return true则导致本阶段被跳过）
-      fk.EventPhaseChanging = 7   @阶段切换时
-      data={
-        from  Phase  @当前阶段
-        to  Phase  @ 切换为的目标阶段
-      }
+      （若在触发本时机技能的on_use函数中设置data.skipped为true则导致本时机被跳过）
+      fk.EventPhaseChanging    @阶段切换时
 
-    若阶段被跳过，则:
+    若阶段被跳过，data.skipped为true，则:
       以该角色为承担者，触发“阶段跳过时”
-      （若在触发本时机技能的on_use函数中return true则导致阶段跳过时机被取消，然后获得一个额外的此阶段）
-      fk.EventPhaseSkipping = 8    @阶段跳过时
+      （若在触发本时机技能的on_use函数中设置data.skipped为true则执行本时机函数）
+      fk.EventPhaseSkipping     @阶段跳过时
 
       若触发“阶段跳过时”后，以该角色为承担者，触发“阶段跳过后”。
-      fk.EventPhaseSkipped = 101   @阶段跳过后
+      （若在触发本时机技能的on_use函数中设置data.skipped为true则执行本时机函数）
 
-      阶段跳过的两个时机，data=phase  Phase @phase为跳过的阶段。
+      fk.EventPhaseSkipped    @阶段跳过后
 
-    若阶段未被跳过，则:
+     阶段的data均为PhaseData，继承PhaseDataSpec 
+
+    若阶段未被跳过，data.skipped不为true，则:
       该角色执行阶段事件
+    否则跳过本阶段
  
   阶段都执行完了，将该角色的阶段设为“回合外”
 
@@ -142,20 +143,16 @@ fk.GamePrepared = 78  @游戏准备时
 
   （此为清理效果）
   以该角色为承担者，触发“回合结束时”
-  fk.TurnEnd = 73    @回合结束时
-  data为TurnStruct
-
-  以该角色为承担者，触发“回合结束后”
-  fk.AfterTurnEnd = 84   @回合结束后
-  data为TurnStruct
+  fk.TurnEnd     @回合结束时
+  data为TurnData，继承TurnDataSpec
   
   以该角色为承担者，触发“回合改变时”
-  fk.EventTurnChanging = 96   @回合改变时
+  fk.EventTurnChanging   @回合改变时
   data={
     from   ServerPlayer  @当前回合角色, 
     to   ServerPlayer  @当前回合角色的下家，
     skipRoundPlus  boolean  @是否跳过轮数
-    }
+  }
 
 阶段事件
 -----------
@@ -165,12 +162,11 @@ fk.GamePrepared = 78  @游戏准备时
   （主效果）
   以该角色为承担者，触发“阶段开始时”（可能导致事件结束）
   （若在触发本时机技能的on_use函数中return true则导致本阶段终止）  
-  fk.EventPhaseStart = 4    @阶段开始时
-  本时机无data
+  fk.EventPhaseStart   @阶段开始时
 
   以该角色为承担者，触发“阶段进行时”
-  fk.EventPhaseProceeding = 5  @阶段进行时
-  本时机无data
+  fk.EventPhaseProceeding   @阶段进行时
+  两个时机的data均为PhaseData，继承PhaseDataSpec
 
   根据角色当前阶段的不同，执行不同的结算:
     若是判定阶段，则:
@@ -180,14 +176,12 @@ fk.GamePrepared = 78  @游戏准备时
         执行此牌的后续效果（置入弃牌堆或者置入下家判定区，或者别的）
     若是摸牌阶段，则:
       以该角色为承担者，触发“摸牌阶段摸牌时”（可能改变摸牌数量）
-      fk.DrawNCards = 11  @摸牌阶段摸牌时
-      data={n＝2}
+      fk.DrawNCards   @摸牌阶段摸牌时
 
       该角色摸2张牌
       以该角色为承担者，触发“摸牌阶段摸牌后”
-      fk.AfterDrawNCards = 12   @摸牌阶段摸牌后
-      data={n＝2}
-
+      fk.AfterDrawNCards   @摸牌阶段摸牌后
+    两个时机的data均为DrawNCardsData，继承DrawNCardsDataSpec 
     若是出牌阶段，则:
       可使用任意张牌和技能，直到阶段结束（主动结束或者被动结束）
     若是弃牌阶段，则:
@@ -197,9 +191,20 @@ fk.GamePrepared = 78  @游戏准备时
 
   （清理效果）
   以该角色为承担者，触发“阶段结束时”
-  fk.EventPhaseEnd = 6   @阶段结束时
+  fk.EventPhaseEnd   @阶段结束时
 
-  以该角色为承担者，触发“阶段结束后”
-  fk.AfterPhaseEnd = 86  @阶段结束后
- 
-  这两个时机都没有data
+  data均为PhaseData，继承PhaseDataSpec
+
+
+游戏结束
+----------
+
+在游戏结束时触发的时机
+
+::
+    无触发者
+    fk.GameFinished   @游戏结束时
+
+    data数据为winner， winner string @ 获胜的身份，空字符串表示平局
+
+::

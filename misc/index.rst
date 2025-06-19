@@ -11,8 +11,6 @@
    uirewrite.rst
    luckcard.rst
    ai.rst
-   triggerdata.rst
-   triggerevent.rst
    new_trigevent.rst
    ipv6.rst
    arrange.rst

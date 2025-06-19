@@ -15,5 +15,6 @@
    07-hp.rst
    08-death.rst
    09-judge.rst
+   10-property.rst
 
    faq.rst
