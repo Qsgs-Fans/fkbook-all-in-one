@@ -39,7 +39,10 @@ extensions = [
   'sphinxcontrib.plantuml',
   # 'sphinx_lua',
 
+  'myst_parser',
 ]
+
+source_suffix = ['.rst', '.md']
 
 lua_source_path = [
   #fk_repo_path + "/freekill-core/lua",
