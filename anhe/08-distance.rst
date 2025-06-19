@@ -42,7 +42,7 @@
 - ``correct_func``: 是一个规定距离修改标准的函数，告诉电脑具体怎样计算距离，其返回的是一个距离修改值。
 
 其中这个 ``correct_func`` 函数的原型是: ``function(self, from, to)``
-它需要三个参数，分别是self, from和to。 ``fixed_func``同理，下面以``correct_func``举例
+它需要三个参数，分别是self, from和to。  ``fixed_func`` 同理，下面以 ``correct_func`` 举例
 
 - self：就是技能本身啦；
 - from：是位于距离计算的起点处的那个角色。因为距离计算是有方向性的呀，

@@ -31,23 +31,36 @@
 但是显然同样的方法面对那些与距离无关的技能的创建工作就无能为力了。
 
 新月杀的技能体系很庞大，有各式各样的技能。但是大体上看，这些技能可以依照它们的特点划分成一些相对好理解的类别：
+
 ① 视为技（包括锁定视为技等）
+
 ② 触发技（包括卖血触发技、启动触发技、阶段触发技等）
+
 ③ 禁止技
+
 ④ 距离修改技
+
 ⑤ 手牌上限技
+
 ⑥ 攻击范围技
+
 ⑦ 失效技
+
 ⑧ 目标选择技
+
 ⑨ 可见技
+
 ⑩ 卡牌技
 
 视为技
 ~~~~~~~
 
 ☆ 视为技，就是指那种允许把一张或者几张卡牌当作其它卡牌使用或打出的技能。\
+
 比如倾国（把一张黑牌当作闪）、乱击（把两张同花色的牌当作万箭齐发）之类的。\
+
 在视为技中，被视作为的卡牌不一定是实际存在的卡牌。\
+
 比如鬼才，是把一张手牌当作一张虚拟的卡牌打出，而虚拟的卡牌具有更改判定的作用效果。\
 这样的被视作为的、可以完成一定技能效果的虚拟卡牌，称作技能卡。
 
@@ -82,7 +95,7 @@
 - ``enabled_at_response`` 表示约定是否允许使用视为的卡牌进行响应。
     这个函数的原型是: ``function(self, player, response)`` 。第三个参数response判断是否为打出卡牌。
 
-值得一提的是，锁定视为技的创建方法，是 ``addEffect("filter",{})``关键字 ，原型是：
+值得一提的是，锁定视为技的创建方法，是 ``addEffect("filter",{})`` 关键字 ，原型是：
 
 .. code:: lua
   
@@ -95,14 +108,19 @@
 这些参数和创建视为技的CreateViewAsSkill的同名参数的含义是一样的。但是多了equip_skill_filter和handly_cards两个参数。
 
 equip_skill_filter是用来判技能是否视为某装备的函数，skill是本技能，返回值string是装备的代码名称
+
 handly_cards是用来返回可以视为拥有可以如手牌般使用或打出的牌的牌的函数，返回值integer[]是牌的id数组。
 
 
 触发技
 ~~~~~~~
 
-☆ 触发技，就是指那种一旦遇到某个条件，就可以发动产生某种效果的技能。比如放逐（受到伤害时可让某角色摸牌翻面）、闭月（回合结束阶段时可摸一张牌）之类的。
+☆ 触发技，就是指那种一旦遇到某个条件，就可以发动产生某种效果的技能。
+
+比如放逐（受到伤害时可让某角色摸牌翻面）、闭月（回合结束阶段时可摸一张牌）之类的。
+
 触发技中有一部分技能是在受到伤害时发动的，就是著名的卖血触发技了；也有一些是遇到回合中的某个阶段被触发的，被称作阶段触发技。
+
 PS：我们之前设计的美王技能也是一个触发技哦～
 
 创建一个视为技用到的方法为 ``addEffect(fk.时机,{})`` ，它的原型是：
@@ -137,6 +155,7 @@ PS：我们之前设计的美王技能也是一个触发技哦～
     这个函数的原型是同can_trigger保持一致。
 
 举例来说，如果一个触发技能是：当你受到伤害后，你可以弃置一张牌，摸一张牌。\
+
 这里这个触发技能的can_trigger便是“受伤角色为拥有这个技能的角色”，触发时机是fk.Damaged，\
 而这个触发技能的on_cost和on_use也就分别是“弃置一张牌”和“摸一张牌”啦。
 
@@ -147,7 +166,9 @@ PS：我们之前设计的美王技能也是一个触发技哦～
 禁止技
 ~~~~~~~
 
-☆ 禁止技，就是具有禁止使用效果的技能啦。具体到游戏里面，就是那些不能成为目标的技能了。比如空城（没手牌时不能成为杀和决斗的目标）、谦逊（不能成为顺手牵羊和乐不思蜀的目标）之类的。
+☆ 禁止技，就是具有禁止使用效果的技能啦。具体到游戏里面，就是那些不能成为目标的技能了。
+
+比如空城（没手牌时不能成为杀和决斗的目标）、谦逊（不能成为顺手牵羊和乐不思蜀的目标）之类的。
 
 创建一个视为技用到的关键词为 ``addEffect("prohibit",{})`` ，它的原型是：
 
@@ -174,11 +195,29 @@ PS：我们之前设计的美王技能也是一个触发技哦～
 - ``prohibit_discard`` 是一个规定这个禁止技对“弃置”这一操作的禁止要求。
     这个函数的原型是同prohibit_use保持一致。
 
+
+距离修改技
+~~~~~~~~~~
+
+
 ☆ 距离修改技，就是跟计算距离相关的技能了，之前我们设计过那个腾云技能就属于这一类，应该是很熟悉了。
 
 创建方法我们也已经使用过了，就是： ``addEffect("distance",{})``
 
-所以这部分就忽略掉吧……
+.. code:: lua
+
+  ---@class DistanceSpec: StatusSkillSpec
+  ---@field public correct_func? fun(self: DistanceSkill, from: Player, to: Player): integer?
+  ---@field public fixed_func? fun(self: DistanceSkill, from: Player, to: Player): integer?
+
+
+- ``correct_func``: 是一个规定距离修正的函数。\
+    这个函数的原型是: ``function(self, from, to)``, 它需要两个参数，分别是self, from和to。
+- ``fixed_func``: 是一个规定距离固定值的函数。\
+    这个函数的原型是同correct_func保持一致。
+
+距离修改技的correct_func和fixed_func都是用来修正距离的，返回值integer代表修正的距离。
+
 
 手牌上限技
 ~~~~~~~~~~
@@ -195,10 +234,12 @@ PS：我们之前设计的美王技能也是一个触发技哦～
   ---@field public exclude_from? fun(self: MaxCardsSkill, player: Player, card: Card): any @ 判定某牌是否不计入手牌上限
 
 
-不用说，correct_func则是用来指导手牌上限修正的，fixed_func则是用来固定手牌上限的, exclude_from则是用来判定某牌是否不计入手牌上限的。
-和距离修改技中的correct_func一样，手牌上线技能的correct_func也是一个返回修正数值的函数，它的函数原型是：function(self, player)。
-
-
+- ``correct_func``: 是一个规定手牌上限修正的函数。\
+    这个函数的原型是: ``function(self, player)``, 它需要两个参数，分别是self和player。
+- ``fixed_func``: 是一个规定手牌上限固定值的函数。\
+    这个函数的原型是同correct_func保持一致。
+- ``exclude_from``: 是一个判定某张牌是否不计入手牌上限的函数。\
+    这个函数的原型是: ``function(self, player, card)``, 它需要三个参数，分别是self, player和card。
 
 
 攻击范围技
@@ -217,9 +258,15 @@ PS：我们之前设计的美王技能也是一个触发技哦～
   ---@field public within_func? fun(self: AttackRangeSkill, from: Player, to: Player): any @ 判定to角色是否锁定在角色from攻击范围内
   ---@field public without_func? fun(self: AttackRangeSkill, from: Player, to: Player): any @ 判定to角色是否锁定在角色from攻击范围外
 
-还是一样的，correct_func用来修正攻击范围，fixed_func用来固定攻击范围，
-final_func用来锁定攻击范围终值，within_func和without_func用来判定角色是否锁定在攻击范围内或外。
 
+- ``within_func``: 是一个判定某个角色是否锁定在某个角色的攻击范围内的函数。\
+    这个函数的原型是: ``function(self, from, to)``, 它需要两个参数，分别是self, from和to。
+- ``without_func``: 是一个判定某个角色是否锁定在某个角色的攻击范围外的函数。\
+    这个函数的原型是同within_func保持一致。
+- ``final_func``: 是一个判定某个角色的锁定攻击范围终值的函数。\
+    这个函数的原型是同correct_func保持一致。
+
+攻击范围技的correct_func和fixed_func都是用来修正攻击范围的，返回值number代表修正的距离。
 
 
 失效技
@@ -236,8 +283,10 @@ final_func用来锁定攻击范围终值，within_func和without_func用来判�
   ---@field public invalidity_attackrange? fun(self: InvaliditySkill, player: Player, card: Weapon): any @ 判定武器的攻击范围是否无效
 
 
-这个方法有两个参数，invalidity_func和invalidity_attackrange，前者用来判定某个技能是否无效，后者用来判定某个武器的攻击范围是否无效。
-
+- ``invalidity_func``: 是一个判定某个技能是否无效的函数。\
+    这个函数的原型是: ``function(self, from, skill)``, 它需要两个参数，分别是self, from和skill。
+- ``invalidity_attackrange``: 是一个判定某个武器的攻击范围是否无效的函数。\
+    这个函数的原型是同invalidity_func保持一致。
 
 
 目标选择技
@@ -258,27 +307,23 @@ final_func用来锁定攻击范围终值，within_func和without_func用来判�
   ---@field public extra_target_func? fun(self: TargetModSkill, player: Player, skill: ActiveSkill, card?: Card): number?
   ---@field public target_tip_func? fun(self: TargetModSkill, player: Player, to_select: Player, selected: Player[], selected_cards: integer[], card?: Card, selectable: boolean, extra_data: any): string|TargetTipDataSpec?
 
+这个函数内部有多个参数，我们先在这里仅挑选列举的几个关键字参数做介绍。
 
-这个方法有多个参数，bypass_times用来判断某个主动技能或者某张牌是否无次数限制，他的函数是：
-function(self, player, skill, scope, card, to)。 
-
-skill代表需要判断的主动技，scope代表限定的范围，如本轮内，回合内，阶段内
-card代表需要判断的卡牌，to代表目标角色。
-
-返回值boolean代表是否无次数限制
-
-residue_func用来修正卡牌的次数上限，返回值为修正的改变值。
-
-fix_times_func用来固定卡牌的次数上限，返回值为固定值。
-
-bypass_distances用来判断某个主动技能或某张牌是否无距离限制，返回值boolean代表是否无距离限制。
-
-distance_limit_func用来修正距离限制，返回值为修正的距离。
-
-extra_target_func用来修正额外目标的数量，返回值为修正的数量。
-
-target_tip_func用来自定义目标选择提示，返回值为提示内容。
-
+- ``bypass_times``: 是一个判定某个主动技能或某张牌是否无次数限制的函数。\
+    这个函数的原型是同is_prohibited保持一致。
+- ``residue_func``: 是一个修正卡牌的次数上限的函数。\
+    这个函数的原型是同correct_func保持一致。
+- ``fix_times_func``: 是一个固定卡牌的次数上限的函数。\
+    这个函数的原型是同correct_func保持一致。
+- ``bypass_distances``: 是一个判定某个主动技能或某张牌是否无距离限制的函数。\
+    这个函数的原型是同is_prohibited保持一致。
+- ``distance_limit_func``: 是一个修正距离限制的函数。\
+    这个函数的原型是同correct_func保持一致。
+- ``extra_target_func``: 是一个修正额外目标的数量的函数。\
+    这个函数的原型是同correct_func保持一致。
+- ``target_tip_func``: 是一个自定义目标选择提示的函数。\
+    这个函数的原型是: ``function(self, to_select, selected, selected_cards, card, selectable, extra_data)``,
+    它需要七个参数，分别是self, to_select, selected_cards, card, selectable, extra_data。
 
 
 
@@ -294,8 +339,11 @@ target_tip_func用来自定义目标选择提示，返回值为提示内容。
   ---@field public card_visible? fun(self: VisibilitySkill, player: Player, card: Card): any
   ---@field public role_visible? fun(self: VisibilitySkill, player: Player, target: Player): any
 
-这个技能有两个参数，card_visible和role_visible，前者用来判定某个卡牌是否对该角色可见，后者用来判定某个角色的身份是否对某玩家可见。
 
+- ``card_visible``: 是一个判定某个卡牌是否对某个角色可见的函数。\
+    这个函数的原型是: ``function(self, player, card)``, 它需要两个参数，分别是self, player和card。
+- ``role_visible``: 是一个判定某个角色的身份是否对某个玩家可见的函数。\
+    这个函数的原型是同card_visible保持一致。
 
 
 卡牌技
@@ -347,7 +395,6 @@ cardskill仅用于绑定卡牌，是作为卡牌的主动使用技。
 
 
 
-
 就这样，我们基本上知道了应该如何去创建一个我们需要的技能了。\
 不过是采用对应的创建方法，通过不同的参数传递和处理来表达我们的意愿，达到特定的效果而已。No confusion, now!
 
@@ -364,12 +411,17 @@ cardskill仅用于绑定卡牌，是作为卡牌的主动使用技。
   room:handleAddLoseSkills(player, skill_names, source_skill, sendlog, no_trigger)
 
 其中：
+
 1. player表示获得技能的角色。
+
 2. skill_names表示待获得技能的名字，传入的就是我们上面所提到了name啦。
+
    特别地，如果要失去某些技能的话，只需要在技能的名字前面加上一个 ``-`` 字符就可以啦，非常方便！
    举例来说，我想要获得那个男人的技能激昂，那么传入的字符串应该就是"jiang"，而如果要失去激昂，那么应该传入“-jiang”。
 
 3. source_skill表示待获得技能的技能来源，就是通过那个技能使角色获得了这个技能，日常可以设为nil，则为空。
+
 4. sendLog表示是否在对局中要发送获得或失去技能的报告。
+
 5. no_trigger表示是否在对局中要触发获得或失去技能的对应时机。
 

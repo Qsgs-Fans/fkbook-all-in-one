@@ -118,7 +118,8 @@ OK，总之准备就绪。
 
 
 如果想要创建自己的势力图的话，只需要把图片放到image/kingdom下面
-.. figure:: pic/3-kingdom.jpg
+
+.. figure:: pic/3-kingdom.png
    :align: center
 
    可以看见有三个文件
