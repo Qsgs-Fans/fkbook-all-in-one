@@ -189,6 +189,7 @@ init.lua主要用来初始化我们子扩展包xuexi的内容，skills文件夹�
 
 .. code-block:: lua
    :linenos:
+   
    local extension = Package:new("xuexi")
    extension.extensionName = "study"
 
