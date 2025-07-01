@@ -35,4 +35,4 @@
    develop/index.rst
    spec/index.rst
    misc/index.rst
-.. api/index.rst
+   func/index.rst
