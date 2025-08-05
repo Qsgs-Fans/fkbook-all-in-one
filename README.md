@@ -19,7 +19,7 @@
 
 
 ```sh
-$ git clone https://gitee.com/Qsgs-Fans/fkbook-all-in-one
+$ git clone --recursive https://gitee.com/Qsgs-Fans/fkbook-all-in-one
 $ cd fkbook-all-in-one
 $ git clone https://gitee.com/notify-ctrl/FreeKill
 
