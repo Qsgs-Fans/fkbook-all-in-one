@@ -1,38 +1,28 @@
 .. SPDX-License-Identifier:	CC-BY-NC-SA-4.0
 
-新月之书
-==========
+FreeKill 文档
+=================
 
-欢迎阅读本书！这本书详细介绍了新月杀的方方面面，从玩家须知、结算规则乃至\
-编程都有着详尽说明。此书由新月杀开发组编写，目前仍在施工中。
+欢迎来到Freekill文档。Freekill是一个开源的桌游引擎，包含客户端、服务端程序，
+并为用户提供了自定义游戏内容的能力。
 
-本书有PDF版和网页版哦。PDF版时不时发一版新的，而网页版自动保持最新，\
-格式也更漂亮，推荐大家看网页版！ https://fkbook-all-in-one.readthedocs.io/
+::
 
-对了，Git仓库在此： https://gitee.com/qsgs-fans/fkbook-all-in-one
-如果你想要来帮忙改进，欢迎发起PR！
+  也称新月之书。FreeKill是新月杀的内部代号，在文档中基本上会用FreeKill称呼项目。
 
-本书共分为以下几大部分，可以按需阅读：
+  在项目的规划中，FreeKill应当有能力支持其他类型的桌游（例如五子棋等）。而“新月杀”这个称呼特指FreeKill对三国杀的实现，但是现阶段FreeKill只支持新月杀这一个游戏，因此混用两个称呼亦无不可。
 
-- Part 1 - 新人入门：普通玩家必读，可以带你进入联机并解答常见疑问。
-- Part 2 - 规则速览：新月杀结算和官方有些许区别，欲了解新月杀结算细节的玩家\
-  可以尝试阅读。如果你想成为拓展作者，那么必读。
-- Part 3 - 开服准备：介绍了Linux基础知识以及新月杀服务器运转入门。
-- Part 4 - 学习Lua：如果你尚未学习过Lua语言，可以从这几章着手，否则可以跳过。
-- Part 5 - Mod制作：正式介绍Mod的制作流程以及Git操练，一步步变强吧。
-- Part 6 - 架构解析：介绍一些关于新月杀底层的知识，不会特别多。
-- Part 7 - 规范文档：对拓展制作或者编程等行为制定的规范
-- Part 8 - 杂项文档：一些或许适合写进新月之书但不知道怎么分类的文档。
+- :doc:`about/index` 包含了关于Freekill的信息、发展历程，以及如何为Freekill做出贡献
+- :doc:`for-players/index` 介绍了如何下载客户端、加入服务器、安装拓展包以及其他对玩家有用的内容
+- :doc:`for-creators/index` 介绍了如何创造你自己的角色、卡牌、技能、游戏模式、资源包以及更多丰富Freekill内容的方法
+- `写给服主 <TODO>`_ 介绍了如何搭建你的个人服务器（公开服、私服、局域网临时服等）
+- `写给开发者 <TODO>`_ 介绍了Freekill的底层运行机制，这些机制影响所有基于Freekill开发的拓展
+- `API文档 <TODO>`_ 供拓展主查阅FreeKill提供的拓展API相关信息，这些文档都是从Lua源码生成的。
 
 .. toctree::
    :titlesonly:
+   :hidden:
 
-   newbie/index.rst
-   rule/index.rst
-   server/index.rst
-   new-to-lua/index.rst
-   anhe/index.rst
-   develop/index.rst
-   spec/index.rst
-   misc/index.rst
-   func/index.rst
+   about/index.rst
+   for-players/index.rst
+   for-creators/index.rst

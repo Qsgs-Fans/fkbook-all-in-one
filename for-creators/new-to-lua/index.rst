@@ -1,7 +1,7 @@
 .. SPDX-License-Identifier:	CC-BY-NC-SA-4.0
 
-学习Lua语言
-=============
+写给初次接触Lua语言的玩家
+==========================
 
 .. toctree::
    :numbered:

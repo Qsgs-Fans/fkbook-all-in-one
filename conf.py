@@ -17,7 +17,7 @@ fk_repo_path = os.path.abspath('.')
 # -- Project information -----------------------------------------------------
 
 project = '新月杀'
-copyright = '2024, Qsgs-Fans'
+copyright = '2025, Qsgs-Fans'
 author = 'Qsgs-Fans'
 
 # -- General configuration ---------------------------------------------------
@@ -37,22 +37,13 @@ extensions = [
   'sphinx.ext.imgconverter',
   #'sphinxcontrib.luadomain',
   'sphinxcontrib.plantuml',
-  # 'sphinx_lua',
+  'sphinx_lua_ls',
 
 ]
 
-lua_source_path = [
-  #fk_repo_path + "/freekill-core/lua",
-  #fk_repo_path + "/freekill-core/standard",
-  #fk_repo_path + "/freekill-core/standard_cards",
-  #fk_repo_path + "/freekill-core/maneuvering",
-  #fk_repo_path + "/FreeKill/packages",
-]
+lua_ls_project_root = "./freekill-core"
+lua_ls_backend = "luals"
 
-lua_source_encoding = 'utf8'
-lua_source_comment_prefix = '---'
-lua_source_use_emmy_lua_syntax = True
-lua_source_private_prefix = '_'
 plantuml_output_format = 'svg_img'
 plantuml_latex_output_format = 'png'
 plantuml_syntax_error_image = True
@@ -82,7 +73,7 @@ exclude_patterns = [
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'furo'
+html_theme = 'sphinx_book_theme'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -90,6 +81,8 @@ html_theme = 'furo'
 # html_static_path = ['_static']
 html_favicon = 'favicon.ico'
 html_logo = 'favicon.ico'
+
+html_last_updated_fmt = '%Y-%m-%d %H:%M:%S'
 
 # PDF option
 latex_engine = 'xelatex'

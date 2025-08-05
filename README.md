@@ -3,6 +3,7 @@
 欢迎来到新月杀文档的Git仓库！
 
 本文档使用Sphinx+RST编写，可以编译成HTML、PDF以及更多其他文档格式。
+文档的组织结构受到[Luanti文档](https://docs.luanti.org/)的很大启发。
 
 这份文档目前托管于 https://fkbook-all-in-one.readthedocs.io/ 欢迎前往阅读！
 
