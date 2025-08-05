@@ -23,5 +23,6 @@ TODO
    create-resource-pak.rst
    new-to-lua/index.rst
    anhe/index.rst
+   rule/index.rst
    api-reference/index.rst
 
