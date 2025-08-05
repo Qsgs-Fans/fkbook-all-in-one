@@ -371,12 +371,205 @@ testCard.lua是编写你的卡牌扩展的地方。其名称你可随意更改�
 
 
 
+游戏模式的基本代码格式
+^^^^^^^^^^^^^^^^^^^^
+
+定义游戏模式的话需要在init.lua中添加本模式，可以新建一个以下的目录结构。
+
+::
+
+    testpackage
+    ├── gamemode
+    │   ├── role_mode.lua
+    │   │
+    ├── pkgs
+    │   ├── role_mode  
+    │   │   ├── skills
+    │   │   │   └──game_rule.lua
+    │   │   └──init.lua
+    │   │
+    └── init.lua
+
+
+我们需要在 testpackage/gamemode/role_mode 中写入主要的模式定义代码。
+
+
+.. code-block:: lua
+   :linenos:
+
+   local  jieshao=[[
+     这里是游戏模式的介绍，可以写一些游戏规则，游戏机制等。
+   ]]
+
+   -- 定义游戏模式的逻辑，这里放的是主要的部分。由于该部分太长，所以不放在主函数中。
+   local role_getlogic = function() end
+     
+   -- 定义游戏模式，这里从身份模式举例
+   local role_mode = fk.CreateGameMode{
+      name = "testMode", -- 定义游戏模式的名称
+      minPlayer = 2, -- 定义游戏模式的最少玩家数量
+      maxPlayer = 8, -- 定义游戏模式的最多玩家数量
+      rule="game_rule"   -- 定义游戏的规则技能  
+      logic = role_getlogic, -- 定义游戏模式的逻辑
+      main_mode = "role_mode", -- 定义游戏模式的主模式，这里是身份模式
+      ...... -- 其他参数
+
+   }
+
+   Fk:loadTranslationTable {   -- 翻译表
+      ["testMode"] = "测试模式",
+      [":testMode"] = jieshao,  -- 模式的介绍
+   }
+
+   return role_mode
 
 
 
-暂定
+接下来我们回到testpackage/pkgs/role_mode/init.lua中，这里是模式的初始化文件。
 
-定义技能
--------------
+.. code-block:: lua
+   :linenos:
+    
+   local extension = Package:new("role_mode",Package.SpecialPack) -- 创建扩展包对象
+   extension.extensionName = "role_mode" -- 定义扩展包名称
 
-暂定
+   extension:loadSkillSkelsByPath("./packages/testpackage/pkgs/role_mode/skills") -- 加载游戏规则技能
+   
+   local role_mode = require "packages/testpackage/gamemode/role_mode" -- 引用游戏模式定义文件
+
+   extension:addGameMode(role_mode) -- 这里是往本扩展包中添加游戏模式，参数为定义好的游戏模式对象。
+
+   return extension -- 返回扩展包对象
+
+
+
+最后，我们回到testpackage/init.lua中，这里是扩展包的初始化文件。
+
+.. code-block:: lua
+   :linenos:
+
+   local role_mode = require "packages/testpackage/pkgs/role_mode" -- 引用游戏模式定义文件
+
+   return{
+      role_mode,
+   }
+
+
+游戏模式的基本代码格式已经介绍完毕，下面我们介绍一下游戏模式的主要定义。
+
+
+
+游戏模式的主要定义和逻辑定义
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+原GameModeSpec类的定义地址：packages/freekill-core/lua/fk_ex.lua  这里说明的很详细！
+
+rule参数相当于给本模式添加一个全局的技能，这个技能的就是游戏的基础规则，默认优先级是0。
+
+.. warning::
+
+    在定义游戏规则的技能时，不需要给技能的effect添加global参数。
+
+
+
+接下来我们主要介绍role_getlogic，这一部分是游戏模式的主要逻辑。
+
+逻辑的定义地址：packages/freekill-core/lua/server/gamelogic.lua
+
+我们首先来看run()函数，这里定义了我们逻辑的主要模块的加载顺序：
+
+.. code-block:: lua
+   :linenos:
+
+   function GameLogic:run()
+    -- default logic
+    local room = self.room
+    table.shuffle(self.room.players)
+    self.room.game_started = true
+    room:doBroadcastNotify("StartGame", "")
+
+
+    self:assignRoles()           -- 身份分配
+    self:adjustSeats()           -- 安排座位。若有主公则作为1号位
+    self:chooseGenerals()        -- 进行选将
+
+    self:buildPlayerCircle()     -- 构建玩家圈
+    self:broadcastGeneral()      -- 公布选将结果
+    self:prepareDrawPile()       -- 准备牌堆
+    self:attachSkillToPlayers()  -- 给玩家添加初始技能
+    self:prepareForStart()       -- 准备开始 
+  
+    self:action()                -- 开始游戏
+  end
+
+
+这里面执行的顺序是非常重要的，需要修改效果的话，要注意修改模块的部分和模块的加载顺序！
+
+接下来，我们对应来介绍每个模块的作用和注意事项。
+
+
+assignRoles()
+^^^^^^^^^^^^^
+
+身份分配模块，这里是分配身份的主要逻辑。
+
+如果你对玩家的身份需要修改的话，可以更改该模块中的self.role_table表中的内容。
+
+
+adjustSeats()
+^^^^^^^^^^^^^
+
+安排座位模块，例如2v2,3v3模式就需要对玩家的座位进行调整。
+
+
+chooseGenerals()
+^^^^^^^^^^^^^^^^
+
+选将模块，这里可以对玩家的选将池进行设定，当然将池的白名单也可以在这里去设置。
+
+
+buildPlayerCircle()
+^^^^^^^^^^^^^^^^^^^
+
+构建玩家圈模块，这是链接玩家执行顺序的地方，基本不用改动。
+
+
+broadcastGeneral()
+^^^^^^^^^^^^^^^^^^^
+
+公布选将结果模块，这里是会设定玩家的武将图像，设定武将的初始体力，体力上限和护甲等，玩家属性方面的设置。
+
+
+prepareDrawPile()
+^^^^^^^^^^^^^^^^^
+
+准备牌堆模块，这里是对牌堆的初始化，如果你需要自定义牌堆的话，可以放在这里进行修改。
+
+
+attachSkillToPlayers()
+^^^^^^^^^^^^^^^^^^^^^^^
+
+给玩家添加初始技能模块，这里是给玩家添加初始技能，包括斗地主的飞扬跋扈等。
+
+如果你需要给玩家添加其他初始技能 ，可以放在这里进行修改。
+
+
+prepareForStart()
+^^^^^^^^^^^^^^^^^
+
+准备开始模块，这里游戏开始前的准备，会将全部的全局触发技放到本房间。当然这个模块大部分是用来关闭手杀特效的（
+
+
+action()
+^^^^^^^^
+
+游戏正式准备开始的模块，在这里会触发相关的游戏时机，例如fk.GamePrepared，fk.DrawInitialCards等。
+
+
+至此，我们介绍了游戏模式的主要逻辑，以及各个模块的作用和注意事项。
+
+根据自己的需求修改对应的模块即可，没必要所有模块全部更改，所有在自定义游戏模式时，如果有不需要修改模块可以不用写。
+
+在运行时，会根据main_mode参数判断是否是某种模式的衍生，如果是，则会默认执行对应游戏类型（身份模式，1v2模式等）的模块逻辑。
+
+
