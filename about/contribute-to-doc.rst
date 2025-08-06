@@ -43,7 +43,10 @@ FreeKill的文档用reST编写，基于Sphinx编译成HTML网页以及pdf文档�
 本文档非常大程度上参考了 `Luanti文档 <https://docs.luanti.org/>`_ 的组织形式，可以参考它的格式，
 讨论后进行贴合FreeKill实际的文档编写。
 
-文档的贡献方式为向Gitee仓库发送Pull Request。
+FreeKill文档采用reST格式编写，这个格式与Markdown很接近，如果完全第一次接触的话，
+可以阅读 `reST教程 <https://learn-rst.readthedocs.io/zh-cn/latest/index.html>`_ 来学习编写方法。
+
+文档的贡献方式为向Gitee仓库发送Pull Request。如果不知道从何下手，也请看看 :doc:`doc-todo` 。
 
 在文档编写途中，沟通是必需的，可以用以下几种联系到我们：
 
