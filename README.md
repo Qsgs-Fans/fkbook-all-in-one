@@ -39,4 +39,7 @@ $ make html # 有make的时候使用这个
 $ sphinx-build -M html . build/
 ```
 
+对于Windows系统，make html时可能会出现因为编码为gbk导致解码的报错，
+可以通过运行build_for_windows.bat或自己写脚本先将python环境改为UTF-8解决。
+
 然后build/html文件夹就会出现，查看index.html即可。
