@@ -18,7 +18,7 @@ FreeKill是一款免费开源的桌游引擎（至少现阶段愿景如此）。
 - :doc:`../for-players/index` 主要为玩家讲述游戏的下载与使用。
 - :doc:`../for-creators/index` 讲述了拓展和资源包的开发，以及其他编程相关指引等。
 - :doc:`../for-server-hosts/index` 讲述联机服务器搭建方法。
-- 写给开发者 (TODO) 讲述了FreeKill的C++层运行逻辑，以及如何贡献。
+- :doc:`../for-devs/index` 讲述了FreeKill的C++层运行逻辑，以及如何贡献。
 
 FreeKill文档的目标
 ---------------------
