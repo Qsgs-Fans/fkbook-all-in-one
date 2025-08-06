@@ -44,6 +44,8 @@
 .. csv-table:: 面向拓展作者的todo
    :header: "TODO", "状态", "负责人"
 
+   "API文档 补齐TriggerEvent及其子类", "待办", ""
+   "API文档 单开一个文件并补齐EventData及其子类", "待办", ""
    "", "", ""
 .. 最后一行是占位符
 

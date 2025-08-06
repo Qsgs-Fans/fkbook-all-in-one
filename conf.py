@@ -43,6 +43,10 @@ extensions = [
 
 lua_ls_project_root = "./freekill-core"
 lua_ls_backend = "luals"
+lua_ls_lua_version: "5.4"
+lua_ls_default_options = {
+  "members": "",
+}
 
 plantuml_output_format = 'svg_img'
 plantuml_latex_output_format = 'png'
