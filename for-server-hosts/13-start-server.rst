@@ -100,6 +100,7 @@ ls之类的命令用法都一样。
   在熟悉SSH之后，这里推荐也去安装VSCode的Remote SSH插件。这个插件能让你在\
   VSCode中对SSH远程的文件进行编辑，亦可使用远程shell，可谓是十分方便。
 
+.. _server_build_instructions:
 编译运行新月杀服务器端
 -----------------------
 
