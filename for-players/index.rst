@@ -19,8 +19,10 @@ FreeKill默认只在客户端中包含了很少的内容。要游玩FreeKill，�
 - :doc:`join-server`
 - :doc:`lobby`
 - :doc:`new-room`
+- :doc:`ban`
 - :doc:`room`
 - :doc:`replay`
+- :doc:`resource`
 - :doc:`commu`
 - :doc:`faq`
 
@@ -32,8 +34,10 @@ FreeKill默认只在客户端中包含了很少的内容。要游玩FreeKill，�
    join-server.rst
    lobby.rst
    new-room.rst
+   ban.rst
    room.rst
    replay.rst
+   resource.rst
    commu.rst
    faq.rst
 
