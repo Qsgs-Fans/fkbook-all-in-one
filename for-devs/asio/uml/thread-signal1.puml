@@ -1,0 +1,34 @@
+@startuml
+
+title 常见的跨线程场景1
+
+participant MainThread as MT
+participant RoomThread as RT
+
+MT -> RT: thread->foo()
+
+activate RT
+
+MT --> MT: 不关心结果\n继续执行
+
+RT ->]: rpc call(foo)
+
+RT <-]: rpc call(bar)
+
+RT --> MT: asio::post(baz)\nawait
+...
+MT --> RT: return
+
+RT --> RT: 或者直接baz()
+
+RT ->]: rpc response(bar)
+
+== Lua还会发出更多rpc call\n但服务端不会再向Lua发起call ==
+
+RT <-]: rpc response(foo)
+
+RT -> RT: 回到poll()
+
+deactivate RT
+
+@enduml

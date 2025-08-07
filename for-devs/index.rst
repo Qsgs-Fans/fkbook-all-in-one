@@ -21,3 +21,5 @@
 
    compile/index.rst
    protocol.rst
+
+   asio/index.rst

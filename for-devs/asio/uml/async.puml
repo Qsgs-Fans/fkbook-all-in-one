@@ -1,0 +1,18 @@
+@startuml
+
+title 主线程异步场景
+
+|io_ctx.run()|
+start
+
+|#AntiqueWhite|MainThread|
+:处理某个回调;
+note right
+回调都是lambda表达式
+以及通过std::bind创建的闭包
+end note
+
+|io_ctx.run()|
+stop
+
+@enduml
