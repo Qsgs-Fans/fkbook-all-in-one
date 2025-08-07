@@ -1,7 +1,9 @@
 写给开发者
 ============
 
-本系列文章介绍了FreeKill和freekill-core中的运行逻辑，以及作为开发者如何参与到这些FreeKill核心代码的开发中。
+本系列文章介绍了FreeKill和freekill-core中的运行逻辑。
+如果您有意参与到开发之中，请看 :doc:`../for-devs/join-us` 。
+
 
 底层机制解说
 -------------
@@ -19,6 +21,7 @@
    :titlesonly:
    :hidden:
 
+   join-us.rst
    compile/index.rst
    protocol.rst
 

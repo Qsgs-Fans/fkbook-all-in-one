@@ -53,5 +53,7 @@ FreeKill文档的目标是作为FreeKill项目的核心参考手册，为感兴�
    :titlesonly:
    :hidden:
 
+   changelog.rst
    contribute-to-doc.rst
    doc-todo.rst
+   core-todo.rst
