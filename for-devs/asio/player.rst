@@ -77,6 +77,20 @@ Player作为Socket的封装，其释放的时机基本上就是断线时。
 
 考虑到掉线本身也唤醒Lua，因此向Lua通知网络异常必须发生在实际唤醒之前。
 
+断线重连当然也是变更。其代码基本上满足这两点。
+
 .. todo::
 
    现在 ``Player::setState()`` 无脑触发 ``onStateChanged`` ，改为真的change了再调用。
+
+   踢人那一段有个冗余的 ``setState`` 。
+
+.. todo::
+
+   由于pushRequest的异步性，存在在Lua游戏结束时触发重连的极端情况，此时C++中玩家的
+   socket已经正常所以不会释放，但是Lua的 ``ServerPlayer:reconnect`` 触发不了，
+   导致重连玩家的客户端不断转圈圈。修复应该不难。
+
+.. todo::
+
+   上面对重连的叙述也适用于旁观。
