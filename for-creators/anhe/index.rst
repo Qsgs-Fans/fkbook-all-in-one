@@ -21,3 +21,8 @@
    09-manage-skill.rst
    10-change-hp.rst
    11-change-game-process.rst
+   12-arrange.rst
+   13-debug.rst
+   14-eventstack.rst
+   15-exppattern.rst
+   16-extension.rst

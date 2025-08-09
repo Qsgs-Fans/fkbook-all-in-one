@@ -35,15 +35,21 @@
 
 ① fk.TurnStart（回合开始时）
 
-② fk.DrawNCards（摸牌阶段摸牌时）
+② fk.EventPhaseChanging  （阶段转换时，两个阶段之间的时间点）---仅在本阶段没有被跳过的情况下才会执行
 
-③ fk.EventPhaseStart（阶段开始时）
+③ fk.EventPhaseSkipping  （阶段跳过时） ---仅在本阶段将要被跳过的情况下才会执行
 
-④ fk.EventPhaseEnd（阶段结束时）
+④ fk.EventPhaseSkipped   （阶段跳过后） ---仅在本阶段将要被跳过的情况下才会执行
 
-⑤ fk.EventPhaseChanging（两个阶段之间的时间点）
+**如果没有跳过阶段的话呢，就会执行下面的⑤⑥⑦时机**
 
-⑥ fk.TurnEnd（回合结束时）
+⑤ fk.EventPhaseStart     （阶段开始时）
+
+⑥ fk.EventPhaseProceeding（阶段进行时）
+
+⑦ fk.EventPhaseEnd       （阶段结束时）
+
+⑧ fk.TurnEnd              (回合结束时)
 
 可以看到，回合开始结束时和摸牌阶段有自己专用的触发时机，英姿等技能就是将摸牌阶段摸牌时的fk.DrawNCards作为自己的触发时机的。
 

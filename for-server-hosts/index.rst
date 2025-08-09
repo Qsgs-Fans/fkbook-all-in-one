@@ -15,4 +15,5 @@
   11-linux-basic.rst
   12-linux-more-basic.rst
   13-start-server.rst
-  14-server-owner.rst
+  14-ipv6.rst
+  15-server-owner.rst
