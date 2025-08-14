@@ -1,0 +1,46 @@
+@startuml
+left to right direction
+skinparam defaultTextAlignment center
+skinparam noteTextAlignment left
+
+actor "客户端" as client
+actor "管理员" as admin
+
+package "FreeKill Server" {
+  (登入与登出) as Login
+  (创建与退出房间) as Room
+  (开始游戏) as Game
+  (通过CLI管理) as CLI
+  (通过Web管理) as Web
+}
+
+client --> Login
+client --> Room
+client --> Game
+
+admin --> CLI
+admin ..> Web : TODO
+
+note right of Login
+  登录认证
+  连接状态检测
+  玩家生命周期
+end note
+
+note right of Room
+  房间创建
+  房间生命周期
+end note
+
+note right of Game
+  游戏逻辑运行与管理
+  与Lua的交互
+end note
+
+note right of Web
+  TODO: 选哪个库？
+  Web管理面板的认证？
+  如何做到和CLI相当的功能？
+end note
+
+@enduml
