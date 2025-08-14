@@ -29,7 +29,8 @@ unique_ptr。需要关心的主要是几个动态创建和释放的组件： ``C
 .. toctree::
    :titlesonly:
 
+   static.rst
+   safety.rst
+
    room.rst
    player.rst
-
-   safety.rst
