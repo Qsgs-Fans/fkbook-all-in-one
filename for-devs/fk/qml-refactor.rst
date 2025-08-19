@@ -108,6 +108,15 @@ Fk.Pages.Common
 - https://doc.qt.io/vscodeext/index.html
 - https://doc.qt.io/vscodeext/vscodeext-how-to-turn-on-qmlls.html
 
+简单概括就是找到Qt Qml插件下载安装，然后他提醒你要不要下载qmlls，点击下载，然后按图中配置：
+
+.. figure:: pic/vscode-qmlls.jpg
+   :align: center
+
+其中/usr/lib/qt6/qml是Linux系统一般的Qt安装位置，对于Windows系统的话，这个目录可能是 ``C:\Qt\6.9.0\lib\qml`` 之类的路径，总之就是Qt安装目录里面有个QtQuick文件夹的地方。
+
+此外，非常推荐安装Error Lens。我们重构的目的之一就是赶走Unqualified access警告提高内聚性，所以一目了然是最好的。
+
 Lua代码暂时没啥好改的。
 
 Fk.Pages.LunarLTK
