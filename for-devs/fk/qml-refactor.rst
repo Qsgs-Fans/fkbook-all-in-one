@@ -97,6 +97,19 @@ Fk.Pages.Common
 
 整个程序内通用Page，每个Page一个qml。
 
+每个Page多少会处理一些command+data，之前是把逻辑写在Logic.js中，而Logic.js是直接对某个全局变量赋值，这次我们不能重蹈覆辙
+
+参考Fk/RootPage.qml的做法，将页面的基类从 ``Item`` 改为 ``W.PageBase`` （需要 ``import Fk.Widgets as W`` ），然后在 ``Component.onCompleted`` 中注册某个command的回调。command不要直接写死字符串，去 ``command.mjs`` 中注册。
+
+此外，不要再使用全局变量以及这个QML文件之外的id。用 ``Mediator.notify`` 进行解耦（参考Init.qml）。涉及用到了 ``Backend`` 或者 ``ClientInstance`` 或者 ``Pacman`` 的，一般 Fk/CppProperty.qml 中会有个对应的方法处理，没有就补一个，在QML中都使用 ``Cpp.XXX`` 和 ``Lua.XXX`` 。这个就是为了让import更加清晰，消除令人费解的全局变量用的。
+
+建议配置好qmlls语言服务器，然后致力于消除掉 ``Unqualified access`` 警告，都可以用上面说的办法消除（组件之间解耦以及用API单例（Cpp, Lua之类的）。喂饭之VSCode用户可以看看Qt官方文档调教好qmlls（当然了你还得装个最新版Qt，越新越好，依赖组件还是那几个没变化）：
+
+- https://doc.qt.io/vscodeext/index.html
+- https://doc.qt.io/vscodeext/vscodeext-how-to-turn-on-qmlls.html
+
+Lua代码暂时没啥好改的。
+
 Fk.Pages.LunarLTK
 ---------------------
 
