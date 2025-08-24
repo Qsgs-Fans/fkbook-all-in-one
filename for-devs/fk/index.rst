@@ -9,3 +9,4 @@ FreeKill本体提供了客户端实现以及一个主要用于单机游戏的简
    :titlesonly:
 
    qml-refactor.rst
+   new-board-game.rst
