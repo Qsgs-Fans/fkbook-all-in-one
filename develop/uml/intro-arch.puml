@@ -1,4 +1,5 @@
 @startuml
+!theme plain
 skinparam lineType ortho
 skinparam componentStyle rectangle
 'left to right direction

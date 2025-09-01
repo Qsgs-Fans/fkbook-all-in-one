@@ -1,4 +1,5 @@
 @startuml
+!theme plain
 
 title 常见的跨线程场景1
 

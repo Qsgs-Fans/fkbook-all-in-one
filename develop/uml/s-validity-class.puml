@@ -1,4 +1,5 @@
 @startuml
+!theme plain
 class Item {
   +Scene parent
   +string type

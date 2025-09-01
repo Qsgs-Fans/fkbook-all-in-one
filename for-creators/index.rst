@@ -10,8 +10,14 @@ FreeKill允许用户开发新游戏、游戏的拓展、资源包等拓展内容
 - :doc:`create-fk-mod`
 - :doc:`create-resource-pak`
 
-其他有用的资源
-----------------
+.. only:: latex
+
+    **其他有用的资源**
+
+.. only:: not latex
+
+    其他有用的资源
+    ----------------
 
 TODO
 
@@ -24,5 +30,6 @@ TODO
    new-to-lua/index.rst
    anhe/index.rst
    rule/index.rst
+
    api-reference/index.rst
 

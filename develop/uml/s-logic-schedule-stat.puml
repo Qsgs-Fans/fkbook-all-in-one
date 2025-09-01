@@ -1,4 +1,5 @@
 @startuml
+!theme plain
 hide empty description
 state "等待事件 - C++" as Cpp
 Cpp : 由Scheduler运行，是一个事件循环

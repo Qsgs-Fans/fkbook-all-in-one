@@ -1,4 +1,5 @@
 @startuml
+!theme plain
 title "服务端用例图 - 总体"
 'left to right direction
 actor 玩家 as User

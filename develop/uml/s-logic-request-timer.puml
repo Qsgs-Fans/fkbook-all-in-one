@@ -1,4 +1,5 @@
 @startuml
+!theme plain
 title 一对一request中request timer的原理
 participant Lua
 participant Room

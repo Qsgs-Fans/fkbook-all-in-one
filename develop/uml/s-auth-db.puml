@@ -1,6 +1,7 @@
 ' https://gist.github.com/QuantumGhost/0955a45383a0b6c0bc24f9654b3cb561#file-example-puml
 
 @startuml
+!theme plain
 !define Table(name,desc) class name as "desc" << (T,#FFAAAA) >>
 !define primary_key(x) <b>x</b>
 !define unique(x) <color:green>x</color>

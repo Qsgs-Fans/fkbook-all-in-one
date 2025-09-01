@@ -1,9 +1,15 @@
 API参考
 ==========
 
-.. toctree::
-   :titlesonly:
+.. only:: latex
 
-   core/index.rst
-   server/index.rst
+   PDF版无API参考
+
+.. only:: not latex
+
+    .. toctree::
+       :titlesonly:
+
+       core/index.rst
+       server/index.rst
 

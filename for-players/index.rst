@@ -13,8 +13,14 @@ FreeKill默认只在客户端中包含了很少的内容。要游玩FreeKill，�
 
 关于上述步骤的详情请看 :doc:`getting-started` 。
 
-服务器游玩说明
-----------------
+.. only:: latex
+
+    **服务器游玩说明**
+
+.. only:: not latex
+
+    服务器游玩说明
+    ----------------
 
 - :doc:`join-server`
 - :doc:`lobby`

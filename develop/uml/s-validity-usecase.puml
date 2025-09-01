@@ -1,4 +1,5 @@
 @startuml
+!theme plain
 
 (合法性检测) as V
 (卡牌检测) as CardV

@@ -1,4 +1,5 @@
 @startuml
+!theme plain
 start
 :接收到连接请求;
 :发送公钥等待回信，若超时则拒绝连接，否则获得msg并判断;

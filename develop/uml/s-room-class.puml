@@ -1,4 +1,6 @@
 @startuml
+
+!theme plain
 hide empty methods
 class Room {
   -RoomThread *thread

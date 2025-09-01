@@ -1,4 +1,5 @@
 @startuml
+!theme plain
 
 title 主线程异步场景
 

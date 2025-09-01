@@ -1,4 +1,5 @@
 @startuml
+!theme plain
 hide empty methods
 class Router {
   -int requestId
