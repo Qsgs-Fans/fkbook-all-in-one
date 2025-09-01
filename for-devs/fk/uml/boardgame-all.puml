@@ -1,0 +1,136 @@
+@startuml
+
+hide empty members
+skinparam linetype ortho
+
+package "Core" <<Frame>> {
+  class Engine {
+    内含该游戏需要的数据
+    类似于桌游中固定配件的作用
+    也可以什么也没有
+    .. 例如一般可以有：..
+    + packages
+    + cards
+  }
+
+  abstract class RoomBase<T extends Player> {
+    + int id
+    + T[] players
+    + getPlayer()
+    + getBanner()
+    + setBanner()
+  }
+
+  abstract class Player {
+    + int id
+    + getMark()
+    + setMark()
+  }
+
+  abstract class GameLogicBase {
+    + virtual run()
+    + addTriggerSkill()
+    + trigger()
+    .. 事件相关 ..
+    - resumeEvent()
+    - ...()
+  }
+
+  Player -r-* RoomBase
+  Player -l[hidden]- Engine
+}
+
+package "Server" <<Frame>> {
+  class Room {
+    - Cpp.Room
+    - commonMethods(mixin)
+    - callbacks
+    + logic
+  }
+
+  interface RoomInterface {
+    + resume()
+    + checkNoHuman()
+    + run()
+    + delay()
+    + gameOver()
+    .. 询问支持相关 ..
+    + Request:ask()
+  }
+
+  interface ServerPlayerInterface {
+    + doNotify()
+    + doRequest()
+    + waitForReply()
+    + kick()
+    + thinking
+    + died
+  }
+
+  class ServerPlayer {
+    - Cpp.ServerPlayer
+    - commonMethods(mixin)
+    - AI -todo-
+  }
+
+  class GameLogic {
+    + run()
+    + ...()
+  }
+
+  Room -d-|> RoomBase: T = ServerPlayer
+  ServerPlayer -d-|> Player
+  ServerPlayer ..l..|> ServerPlayerInterface
+  ServerPlayer -r-* Room
+  Room ..r..|> RoomInterface
+  GameLogic -l-* Room
+  GameLogic --|> GameLogicBase
+}
+
+package "Client" <<Frame>> {
+  class Client {
+    - Cpp.Client
+    - commonMethods(mixin)
+    - callbacks
+    - requestHandlers
+  }
+
+  class ClientPlayer {
+    - Cpp.ClientPlayer
+  }
+
+  interface ClientInterface {
+    + notifyUI()
+    + sendDataToUI()
+    .. Command回调 ..
+    + chat()
+    + ... 其他通用回调 ... ()
+  }
+
+  Client -u-|> RoomBase: T = ClientPlayer
+  Client ..r..|> ClientInterface
+  ClientPlayer -u-|> Player
+  ClientPlayer -r-* Client
+}
+
+note right of Core
+  Server负责
+  1. 运行结算
+  2. 处理client发来的reply
+  3. 处理client发来的notify
+  4. AI
+  5. 其他通用功能
+  ----
+  Core负责
+  1. 为Server和Client提供基类
+  2. 定义若干该游戏需要的类
+  3. 提供Engine管理游戏概念等
+  ----
+  Client负责
+  1. 处理server发来的数据
+  2. 向GUI发送相关信号
+  3. 为部分GUI提供ui逻辑
+  4. 其他通用功能
+end note
+
+@enduml

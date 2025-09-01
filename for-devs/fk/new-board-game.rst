@@ -12,18 +12,35 @@
 - ``logic_klass`` : 发牌员需要遵循的结算规则，即GameLogic
 - ``client_klass``, ``room_page`` : 发牌员的“发牌”如何让客户端处理，即command+data
 
+架构和API设计
+---------------
+
+整体分析后，通用架构应该如下图：
+
+.. uml:: uml/boardgame-all.puml
+
+其中，用户应该要做以下的事情才能拓展自己的新桌游：
+
+- 派生Core中的Player和RoomBase类，增添数据成员
+- 定义一堆自己觉得有必要的类，然后派生Core中的Engine类来管理类以及实例
+- 派生自己的Player和RoomBase类，分别对应图中Client侧和Server侧
+
+  - 派生后都需要include一下mixin来实现图中的接口，参见已有例子
+
+- 对于server侧，派生GameLogicBase，重写run()方法
+- 对于server侧，可以向Room中添加自己的API了
+- 对于client侧，向Client中编写若干新方法来处理自定义新command
+- 对于客户端，编写新QML页面作为游戏页面。详见“QML重构”篇
+
+之前的草稿
+--------------
+
 由于FreeKill主打一个可拓展，新游戏品类也得可以自定义拓展方式了
 
 - ``ex-util.lua`` : 返回拓展常用组件
 
 文件架构
 --------------
-
-现在的freekill-core里面的Lua纯属为三国杀单一玩法准备的。想想办法怎么拆
-
-既然都按上面那么说了，那不如：
-
-.. code:: text
 
     - game_name
       - core
