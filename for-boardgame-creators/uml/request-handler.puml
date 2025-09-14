@@ -1,0 +1,35 @@
+@startuml
+abstract class RequestHandler {
+  + RoomBase room
+  + Player player
+  + Scene scene
+  - map<string, Item[]> change
+  + initialize(player, data)
+  + {abstract} setup()
+  + {abstract} finish()
+  + {abstract} update()
+}
+
+class Scene {
+  + RequestHandler parent
+  + map<string, map<string, Item>> items
+  + initialize(parent)
+  + addItem(item, ui_data)
+  + removeItem(elemType, id, ui_data)
+  + getAllItems(elemType)
+  + update(elemType, id, newData)
+  - notifyUI()
+}
+
+class Item {
+  + Scene parent
+  + string|int id
+  + bool enabled
+  + initialize(scene, id)
+  + toData()
+  + setData(newData)
+}
+
+Scene --* RequestHandler
+Item --* Scene
+@enduml

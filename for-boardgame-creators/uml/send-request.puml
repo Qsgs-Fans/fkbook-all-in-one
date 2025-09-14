@@ -1,0 +1,14 @@
+@startuml
+
+Server -> Lua: Xiangqi.PlayChess
+activate Lua
+Lua -> Lua: 获取对应handler类
+Lua -> Lua: 创建实例并调用setup方法
+Lua -> QML: scene数据
+activate QML
+Lua -> QML: notifyUI("Xiangqi.PlayChess")
+deactivate Lua
+QML -> QML: callback
+deactivate QML
+
+@enduml

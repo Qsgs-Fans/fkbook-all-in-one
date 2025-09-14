@@ -6,15 +6,15 @@ abstract class ClientRoomBase
 abstract class "Xiangqi.Player" as MyPlayer
 abstract class "Xiangqi.RoomBase" as MyRoomBase
 class "Xiangqi.ClientPlayer" as MyClientPlayer #pink
-class "Xiangqi.Room" as MyRoom #pink
+class "Xiangqi.Client" as MyClient #pink
 
 MyPlayer <|-d[thickness=2]- MyClientPlayer
-MyRoomBase <|-d[thickness=2]- MyRoom
+MyRoomBase <|-d[thickness=2]- MyClient
 
 MyClientPlayer -u-|> ClientPlayerBase 
-MyRoom -u-|> ClientRoomBase 
+MyClient -u-|> ClientRoomBase 
 
-MyClientPlayer -r-* MyRoom: 1 .. n
+MyClientPlayer -r-* MyClient: 1 .. n
 'MyPlayer .r.* MyRoomBase
 
 ClientPlayerBase -l[hidden]- MyPlayer

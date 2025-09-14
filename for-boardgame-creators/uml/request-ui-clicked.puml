@@ -1,0 +1,23 @@
+@startuml
+
+User -> QML: Click
+activate QML
+QML -> Client: (call)
+activate Client
+
+Client -> RequestHandler: update()
+activate RequestHandler
+
+RequestHandler -> Client: (return)
+alt if return true
+  Client -> RequestHandler: finish()
+end
+
+deactivate RequestHandler
+
+Client -> QML: scene数据
+Client -> QML: (return)
+deactivate Client
+deactivate QML
+
+@enduml
