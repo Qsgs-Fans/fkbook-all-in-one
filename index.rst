@@ -15,6 +15,7 @@ FreeKill 文档
 - :doc:`about/index` 包含了关于Freekill的信息、发展历程，以及如何为Freekill做出贡献
 - :doc:`for-players/index` 介绍了如何下载客户端、加入服务器、安装拓展包以及其他对玩家有用的内容
 - :doc:`for-creators/index` 介绍了如何创造你自己的角色、卡牌、技能、游戏模式、资源包以及更多丰富Freekill内容的方法
+- :doc:`for-boardgame-creators/index` 介绍了如何利用Freekill创建全新桌游
 - :doc:`for-server-hosts/index` 介绍了如何搭建你的个人服务器（公开服、私服、局域网临时服等）
 - :doc:`for-devs/index` 介绍了Freekill的底层运行机制，这些机制影响所有基于Freekill开发的拓展
 
@@ -25,5 +26,6 @@ FreeKill 文档
    about/index.rst
    for-players/index.rst
    for-creators/index.rst
+   for-boardgame-creators/index.rst
    for-server-hosts/index.rst
    for-devs/index.rst

@@ -1,0 +1,18 @@
+@startuml
+hide empty members
+
+abstract class Piece {
+  + int id
+  + string name
+  + getColor()
+  + {abstract} canMoveTo(board, from, to)
+}
+
+车 -d-|> Piece
+马 -d-|> Piece
+炮 -d-|> Piece
+相 -u-|> Piece
+仕 -u-|> Piece
+帅 -u-|> Piece
+兵 -u-|> Piece
+@enduml

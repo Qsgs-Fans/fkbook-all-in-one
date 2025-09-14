@@ -1,0 +1,20 @@
+@startuml
+hide empty members
+
+abstract class Player
+abstract class RoomBase
+abstract class "Xiangqi.Player" as MyPlayer #pink
+abstract class "Xiangqi.RoomBase" as MyRoomBase #pink
+
+MyPlayer <|-d- ClientPlayer
+MyPlayer <|-u- ServerPlayer
+MyRoomBase <|-u- Room
+MyRoomBase <|-d- Client
+MyPlayer -l-|> Player
+MyRoomBase -r-|> RoomBase
+
+ClientPlayer -r-* Client: 1 .. n
+ServerPlayer -r-* Room: 1 .. n
+MyPlayer .r.* MyRoomBase
+
+@enduml

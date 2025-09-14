@@ -1,0 +1,24 @@
+@startuml
+hide empty members
+
+abstract class ClientPlayerBase
+abstract class ClientRoomBase
+abstract class "Xiangqi.Player" as MyPlayer
+abstract class "Xiangqi.RoomBase" as MyRoomBase
+class "Xiangqi.ClientPlayer" as MyClientPlayer #pink
+class "Xiangqi.Room" as MyRoom #pink
+
+MyPlayer <|-d[thickness=2]- MyClientPlayer
+MyRoomBase <|-d[thickness=2]- MyRoom
+
+MyClientPlayer -u-|> ClientPlayerBase 
+MyRoom -u-|> ClientRoomBase 
+
+MyClientPlayer -r-* MyRoom: 1 .. n
+'MyPlayer .r.* MyRoomBase
+
+ClientPlayerBase -l[hidden]- MyPlayer
+ClientRoomBase -r[hidden]- MyRoomBase
+
+@enduml
+

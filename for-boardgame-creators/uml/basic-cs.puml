@@ -1,0 +1,16 @@
+@startuml
+hide empty members
+
+abstract class Player
+abstract class RoomBase
+
+Player <|-d- ClientPlayer
+Player <|-u- ServerPlayer
+RoomBase <|-u- Room
+RoomBase <|-d- Client
+
+ClientPlayer -r-* Client: n .. 1
+ServerPlayer -r-* Room: n .. 1
+Player .r.* RoomBase
+
+@enduml

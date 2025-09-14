@@ -1,0 +1,16 @@
+@startuml
+
+Server -> Lua: (command, data)
+activate Lua
+Lua -> Lua: callback(data)
+
+alt 如果notifyUI
+  Lua -> QML: 由Lua控制的(command, data)\nQML继续调自己的callback(data)
+  activate QML
+  deactivate QML
+else 不notifyUI的话，后续无事发生
+end
+deactivate Lua
+
+@enduml
+

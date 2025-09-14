@@ -1,0 +1,35 @@
+@startuml
+hide empty members
+
+abstract class ServerPlayerBase
+abstract class ServerRoomBase
+abstract class "Xiangqi.Player" as MyPlayer
+abstract class "Xiangqi.RoomBase" as MyRoomBase
+class "Xiangqi.ServerPlayer" as MyServerPlayer #pink
+class "Xiangqi.Room" as MyRoom #pink
+
+MyPlayer <|-d[thickness=2]- MyServerPlayer
+MyRoomBase <|-d[thickness=2]- MyRoom
+
+MyServerPlayer -u-|> ServerPlayerBase 
+MyRoom -u-|> ServerRoomBase 
+
+MyServerPlayer -r-* MyRoom: 1 .. n
+'MyPlayer .r.* MyRoomBase
+
+ServerPlayerBase -l[hidden]- MyPlayer
+ServerRoomBase -r[hidden]- MyRoomBase
+
+abstract class GameLogic
+class "Xiangqi.GameLogic" as MyGameLogic #pink
+
+MyGameLogic -r-|> GameLogic
+MyGameLogic -u-* MyRoom
+
+abstract class AI
+class "Xiangqi.AI" as MyAI #pink
+
+MyAI -l-|> AI
+MyAI -u-* MyServerPlayer
+
+@enduml
