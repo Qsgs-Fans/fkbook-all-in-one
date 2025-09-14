@@ -1,0 +1,96 @@
+@startuml
+'!theme plain
+
+hide empty members
+skinparam linetype ortho
+
+package "Core" <<Frame>> {
+  abstract class RoomBase
+  abstract class Player
+
+  abstract "Xiangqi.RoomBase" as MyRoomBase #pink
+  abstract "Xiangqi.Player" as MyPlayer #pink
+
+  MyPlayer -l-|> Player
+  MyRoomBase -r-|> RoomBase
+  MyPlayer .r.* MyRoomBase
+}
+
+package "Server" <<Frame>> {
+  abstract class ServerPlayerBase
+  abstract class ServerRoomBase
+  class "Xiangqi.ServerPlayer" as MyServerPlayer #pink
+  class "Xiangqi.Room" as MyRoom #pink
+  abstract class GameLogic
+  class "Xiangqi.GameLogic" as MyGameLogic #pink
+  abstract class AI
+  class "Xiangqi.AI" as MyAI #pink
+
+  MyPlayer <|-u[thickness=2]- MyServerPlayer
+  MyRoomBase <|-u[thickness=2]- MyRoom
+
+  MyServerPlayer -l-|> ServerPlayerBase 
+  MyRoom -r-|> ServerRoomBase 
+
+  MyServerPlayer -r-* MyRoom: 1 .. n
+  'MyPlayer .r.* MyRoomBase
+
+  ServerPlayerBase -l[hidden]- MyPlayer
+  ServerRoomBase -r[hidden]- MyRoomBase
+
+  MyGameLogic -r-|> GameLogic
+  MyGameLogic -d-* MyRoom
+
+  MyAI -l-|> AI
+  MyAI -d-* MyServerPlayer
+}
+
+package "Client" <<Frame>> {
+  abstract class ClientPlayerBase
+  abstract class ClientBase
+  class "Xiangqi.ClientPlayer" as MyClientPlayer #pink
+  class "Xiangqi.Client" as MyClient #pink
+
+  MyPlayer <|-d[thickness=2]- MyClientPlayer
+  MyRoomBase <|-d[thickness=2]- MyClient
+
+  MyClientPlayer -l-|> ClientPlayerBase 
+  MyClient -r-|> ClientBase 
+
+  MyClientPlayer -r-* MyClient: 1 .. n
+  'MyPlayer .r.* MyRoomBase
+
+  ClientPlayerBase -l[hidden]- MyPlayer
+  ClientBase -r[hidden]- MyRoomBase
+}
+
+
+package "Other" <<Frame>> {
+  abstract Engine
+  class "Xiangqi.Engine" as MyEngine #pink
+  abstract Piece #pink
+
+  Piece -r-* MyEngine
+  MyEngine -r-|> Engine
+
+  abstract Item
+  abstract Scene
+  abstract RequestHandler
+  class "Xiangqi.PieceItem" as UIPiece #pink
+  class "Xiangqi.PointItem" as UIPoint #pink
+  class "Xiangqi.RoomScene" as RoomScene #pink
+  class "Xiangqi.ReqPlayChess" as ReqPlayChess #pink
+
+  UIPiece --|> Item
+  UIPoint --|> Item
+  RoomScene --|> Scene
+  ReqPlayChess --|> RequestHandler
+
+  Item -r-* Scene
+  Scene -r-* RequestHandler
+
+  Engine -d[hidden]- ReqPlayChess
+  Engine -u[hidden]- ClientBase
+}
+
+@enduml

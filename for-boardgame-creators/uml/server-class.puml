@@ -8,6 +8,12 @@ abstract class "Xiangqi.RoomBase" as MyRoomBase
 class "Xiangqi.ServerPlayer" as MyServerPlayer #pink
 class "Xiangqi.Room" as MyRoom #pink
 
+abstract class GameLogic
+class "Xiangqi.GameLogic" as MyGameLogic #pink
+
+abstract class AI
+class "Xiangqi.AI" as MyAI #pink
+
 MyPlayer <|-d[thickness=2]- MyServerPlayer
 MyRoomBase <|-d[thickness=2]- MyRoom
 
@@ -20,14 +26,8 @@ MyServerPlayer -r-* MyRoom: 1 .. n
 ServerPlayerBase -l[hidden]- MyPlayer
 ServerRoomBase -r[hidden]- MyRoomBase
 
-abstract class GameLogic
-class "Xiangqi.GameLogic" as MyGameLogic #pink
-
 MyGameLogic -r-|> GameLogic
 MyGameLogic -u-* MyRoom
-
-abstract class AI
-class "Xiangqi.AI" as MyAI #pink
 
 MyAI -l-|> AI
 MyAI -u-* MyServerPlayer
