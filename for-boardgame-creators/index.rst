@@ -67,3 +67,4 @@
    gamelogic.rst
    client.rst
    xiangqi-fin.rst
+   qml.rst

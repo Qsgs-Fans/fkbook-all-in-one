@@ -12,6 +12,8 @@
 - :doc:`../for-creators/anhe/01-hello`
 - :doc:`../for-creators/anhe/06-git`
 
+无QML基础者请看 :doc:`qml` ，并结合已有的QML代码
+
 此外还需要你对 `middleclass <https://github.com/kikito/middleclass>`_ 有所了解，
 这是Freekill使用的Lua面向对象库。自然而然的，接下来的代码需要你接触过面向对象编程。
 
