@@ -43,6 +43,7 @@
 - :doc:`roombase`
 - :doc:`gamelogic`
 - :doc:`client`
+- :doc:`surrender`
 - :doc:`xiangqi-fin`
 
 .. comment
@@ -66,5 +67,6 @@
    roombase.rst
    gamelogic.rst
    client.rst
+   surrender.rst
    xiangqi-fin.rst
    qml.rst
