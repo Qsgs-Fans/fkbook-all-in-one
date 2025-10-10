@@ -24,6 +24,7 @@ TODO
 
    create-fk-mod.rst
    create-resource-pak.rst
+   terminology.rst
    new-to-lua/index.rst
    anhe/index.rst
    rule/index.rst

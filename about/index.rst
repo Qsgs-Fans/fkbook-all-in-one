@@ -55,15 +55,6 @@ FreeKill文档的目标是作为FreeKill项目的核心参考手册，为感兴�
 
 .. only:: not latex
 
-    重要Repo
-    ~~~~~~~~~~
-
-- `FreeKill Github Repo <https://github.com/Qsgs-Fans/FreeKill>`_ ：FreeKill客户端和服务端主仓库，主要是C++相关。
-- `freekill-core Gitee Repo <https://gitee.com/Qsgs-Fans/freekill-core>`_ ：FreeKill核心开发仓库，包括最核心的客户端QML和服务端Lua。
-- `freekill-asio Github Repo <https://githun.com/Qsgs-Fans/freekill-asio>`_ ：移除Qt依赖后用C++重构的服务端，旨在提升FreeKill服务端的性能。
-
-.. only:: not latex
-
     交流场所
     ~~~~~~~~~~
 

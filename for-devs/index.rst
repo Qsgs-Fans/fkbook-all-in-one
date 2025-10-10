@@ -39,6 +39,7 @@
    :hidden:
 
    join-us.rst
+   terminology.rst
    compile/index.rst
    protocol.rst
 
