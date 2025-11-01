@@ -104,6 +104,11 @@ ls之类的命令用法都一样。
 编译运行新月杀服务器端
 -----------------------
 
+.. warning::
+
+   这部分编译说明已经过时（虽然仍可使用），以此开设的服务端操作麻烦且功能不全面。
+   推荐继续看正文部分。
+
 安装依赖：（云服务器一般最新只到debian 11，想安装的话需要先换源到debian12并apt update和apt upgrade）
 
 ::
@@ -141,7 +146,7 @@ ls之类的命令用法都一样。
    This program comes with ABSOLUTELY NO WARRANTY.
    This is free software, and you are welcome to redistribute it under
    certain conditions; For more information visit http://www.gnu.org/licenses.
-   
+
    [v0.3.3] This is server cli. Enter "help" for usage hints.
    fk>
 
