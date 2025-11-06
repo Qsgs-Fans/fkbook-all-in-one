@@ -52,3 +52,8 @@ FreeKill文档采用reST格式编写，这个格式与Markdown很接近，如果
 
 - 在百度贴吧 - 新月杀吧发贴询问文档贡献相关事宜
 - 加入新月杀扩展学习交流QQ群：837690225，注明贡献文档
+
+文档的todo list
+-----------------
+
+详见Gitee仓库的issues界面： https://gitee.com/qsgs-fans/fkbook-all-in-one/issues
