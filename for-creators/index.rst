@@ -29,5 +29,6 @@ TODO
    anhe/index.rst
    rule/index.rst
 
+   misc/index.rst
    api-reference/index.rst
 
