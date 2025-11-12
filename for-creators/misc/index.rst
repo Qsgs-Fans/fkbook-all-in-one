@@ -8,3 +8,4 @@
    :titlesonly:
 
    ai-remake.rst
+   mode-config.rst
