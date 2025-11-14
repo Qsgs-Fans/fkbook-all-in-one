@@ -14,83 +14,69 @@
 拓展与包的基本结构
 --------------------
 
-拓展存在于游戏目录的 ``packages/`` 目录之下，其本身是一个目录。文件结构如下：
+拓展存在于游戏目录的 ``packages`` 目录之下，其本身是一个目录。文件结构如下：
 
 ::
 
     extension
+    ├── audio
+    │   ├── card
+    │   ├── death
+    │   ├── skill
+    │   └── win
+    │
+    ├── image
+    │   ├── anim
+    │   ├── card
+    │   ├── generals
+    │   ├── mark
+    │   └── role
+    │
     ├── init.lua
-    ├── package1
-    │   ├── init.lua
-    │   └── skills
-    │       ├── init.lua
-    │       ├── jianxiong.lua
-    │       └── ...
-    ├── package2
-    └── ...
+    │
+    └── pkg
+        ├── package1
+        │   ├── init.lua
+        │   └── skills
+        │       ├── jianxiong.lua
+        │       └── ...
+        │
+        ├── package2
+        └── ...
 
-拓展根目录中的 ``init.lua`` 需要加载其包含的所有包。
+拓展根目录中的 ``init.lua`` 需要加载其包含的所有子扩展包。
 
-包可以用来拓展更多的技能、武将、卡牌、游戏模式。
+``audio`` ， ``image`` 分别为声音和图像资源文件夹。
 
-每个包目录中的 ``init.lua`` 需要加载其包含的所有技能，然后其余部分定义该包含有的
-武将、卡牌和游戏模式等。技能位于包的 ``skills/`` 目录下，每个技能置于单独的Lua
-文件中， ``skills/init.lua`` 需要手动require目录中所有技能文件，并返回表。
+``pkg`` 文件夹内为你的子扩展包文件夹。
 
-定义武将
------------
+这些文件夹拥有相对固定的名称，**请不要随意更改**
 
-这里是一个完整扩展武将包的文件目录。
+子扩展包可以用来拓展更多的技能、武将、卡牌、游戏模式。
 
 如果你看过新人入门教程，这里就是你的DIY武将在开发时，所需要了解的各种文件与代码的规范。
 
-::
+audio
+^^^^^^
+``audio`` 是你的语音文件夹，其内部包括了 ``death`` 文件夹， ``skill`` 文件夹和 ``card`` 文件夹。
 
-    package1
-    ├── audio
-    │   ├── death
-    │   │   └── testGeneral.mp3
-    │   └── skill
-    │       ├── testGeneral_skill1.mp3
-    │       └── testGeneral_skill2.mp3
-    │   
-    ├── image
-    │   ├── generals  
-    │   │   └── testGeneral.jpg
-    │   └── kingdom 
-    │       ├── testKingdom.png
-    │       ├── testKingdom-back.png
-    │       └── testKingdom-magatama.png
-    │   
-    ├── init.lua
-    └── test.lua
-
-首先，我们要明白一个概念，扩展包与武将包或者卡牌包。扩展包是你的个人扩展，在这个大分类中包含了你的武将扩展包与卡牌扩展包。
-
-.. note::
-  
-  这里仅介绍武将扩展包。
-
-package1是你的扩展包【英文代码】名称，请注意，**不要使用中文命名**
-
-初次进入后，其内部应有如下几个文件或文件夹。（内部的文件夹划分拥有固定的名称，请不要随意更改）
-
-1：audio
-^^^^^^^^
-audio是你的武将语音文件夹，其内部包括了death文件夹与skill文件夹。
 
 .. warning::
 
-    audio中的语音文件，应**全部是mp3格式。**
+    ``audio`` 中的语音文件，应 **全部是mp3格式。**
 
     如果单纯的从其他格式以重命名的方式修改为mp3，可能会导致无法播放，请注意使用转化软件或者在线网站。
 
-    一个扩展包只能有一个audio文件夹与image文件夹，其内部可能存放多个其他文件夹。
+    一个扩展包只能有一个 ``audio`` 文件夹与 ``image`` 文件夹，其内部可能存放多个其他文件夹。
 
-death文件夹内部应放置武将的【阵亡语音】，**该语音的命名应与武将的代码名称相同。**
+``death`` 文件夹内部应放置武将的【阵亡语音】，**该语音的命名应与武将的代码名称相同。**
 
+``skill`` 文件夹内部应放置武将的【技能语音】，**该语音的命名应与武将技能的代码名称相同。**
 
-skill文件夹内部应放置武将的【技能语音】，**该语音的命名应与武将技能的代码名称相同。**
+``win`` 文件夹内部应放置武将的【胜利语音】，**该语音的命名应与武将的代码名称相同**
+
+``card`` 文件夹内部应放置【卡牌语音】， ``card`` 内部又分为 ``female`` 与 ``male`` 文件夹。 ``female`` 与 ``male``
+分别对应卡牌在使用时所播放的女性语音与男性语音。**一张卡牌对应一个语音，语音的命名与卡牌的代码名称相同。**
 
 .. note::
 
@@ -99,23 +85,24 @@ skill文件夹内部应放置武将的【技能语音】，**该语音的命名�
     语音编号从1开始计算，例如testGeneral_skill1.mp3和testGeneral_skill2.mp3。
 
 
-2：image
-^^^^^^^^
+image
+^^^^^^^
 
-image是你的武将立绘与势力图片的文件夹，其内部包括了generals文件夹和kingdom文件夹。
+``image`` 是你的武将立绘与势力图片的文件夹，其内部包括了 ``generals`` 文件夹和 ``kingdom`` 和 ``card`` 文件夹。
 
 .. warning::
 
-    image中的【武将立绘】文件，应**全部是jpg格式。**
+    ``image`` 中的【武将立绘】文件，应 **全部是jpg格式。**
 
-    image中的【势力图片】文件，应**全部是png格式。**
+    ``image`` 中的【势力图片】文件，应 **全部是png格式。**
 
+    ``image`` 中的【卡牌图片】文件，应 **全部是png格式。**
 
-generals文件夹内部应放置武将的【立绘】，**该立绘的命名应与武将的代码名称相同。**
+``generals`` 文件夹内部应放置武将的【立绘】， **该立绘的命名应与武将的代码名称相同。**
 
-对于武将的立绘同时拥有其文件大小的要求，请记住武将的立绘格式应为**250x292**大小。
+对于武将的立绘同时拥有其文件大小的要求，请记住武将的立绘格式应为 **250x292** 大小。
 
-kingdom文件夹内部应放置【DIY势力图片】，势力图片拥有三个部分，**均为png图片。**
+``kingdom`` 文件夹内部应放置【DIY势力图片】，势力图片拥有三个部分，**均为png图片。**
 
 .. note::
 
@@ -144,156 +131,15 @@ kingdom文件夹内部应放置【DIY势力图片】，势力图片拥有三个�
 势力将框的名称应为图标名称+(-back)。例如shu-back.png。
 
 
-3：init.lua
-^^^^^^^^^^^
+``card`` 文件夹内部应放置【DIY卡牌图片】，其内部存放了三部分，**均为png图片。**
 
-init文件是你扩展包的核心文件，**如果没有init.lua，新月杀就不会加载你的package1文件夹。**
-
-在init文件中，应包含以下的函数或语句。
-
-- 武将扩展文件引用语句
-- 翻译函数
-- return语句
-
-完整的init.lua的内容如下
-
-.. code-block:: lua
-   :linenos:
-
-   local test = require "packages/package1/test"
-   -- 这一部分是武将扩展文件引用部分，
-   -- packages不用改动，package1为你的扩展文件夹名称，test为你的武将扩展文件名称。
-
-
-   Fk:loadTranslationTable {
-    ["package1"] = "我的扩展包",
-   }
-   -- 这一部分是翻译函数，它会把扩展的英文代码在游戏里翻译为中文。
-   -- 在init里的翻译函数，主要用来翻译扩展包的名称。
-
-   return {
-     test,
-   }
-   -- 这一部分是return 语句，其作用是返回你写的新月杀扩展文件。
-   -- 写在return里的文件会被新月杀发现然后执行，没写的则不会执行。
-   -- 如果你有多个扩展文件，请按照上述格式在return里进行编写。（test为之前引用的变量）
-
-
-4：test.lua
-^^^^^^^^^^^
-test.lua是编写你的武将扩展的地方。其名称你可随意更改，但是请注意在init中的引用。
-
-.. code-block:: lua
-   :linenos:
-
-   local extension = Package:new("package1")
-   extension.extensionName = "test"
-   -- 这一部分是武将扩展包的创建语句。
-   -- 第一行为创建武将扩展包，其被分类在你的package1扩展中。这里需要填入你的扩展文本夹名称。
-   -- 第二行为你的武将扩展包包名，test。请注意，包名应与你的武将扩展文件名一致。
-
-   Fk:loadTranslationTable {
-    ["test"] = "扩展武将包",
-    ["testKingdom"] = "扩展武将势力",
-   }
-
-   local testGeneral = General:new(extension, "testGeneral", "testKingdom", 3, 4, General.Male)
-   -- 这一部分是武将的创建函数。具体参数详情请查看General类。
-   -- 我们创建了一个名为testGeneral的武将，他的势力是testKingdom，初始体力为3，体力上限为4，是一名男性。
-   
-
-   local testGeneral_skill1 = fk.CreateTriggerSkill{}
-   local testGeneral_skill2 = fk.CreateTriggerSkill{}
-   -- 这一部分是武将的技能创建，里面应有实际的技能效果。关于技能的详情请查看技能类，这里不再赘述
-   
-   testGeneral:addSkill(testGeneral_skill1)
-   testGeneral:addSkill(testGeneral_skill2)
-   -- 这一部分是武将的技能添加。如果不添加，则这个技能是无法在游戏里出现的。
-
-    Fk:loadTranslationTable {
-      ["testGeneral"] = "武将的名称",               
-      ["#testGeneral"] = "武将的称号",               -- #+武将代码名称 (若不写此条目，默认为【官方】)
-      ["~testGeneral"] = "武将阵亡语音台词",          -- ~+武将代码名称 (若不写此条目则无语音台词)
-      ["designer:testGeneral"] = "武将的设计者",      -- designer:+武将代码名称 (若不写此条目，默认为【官方】)
-      ["illustrator:testGeneral"] = "武将立绘的画师",  -- illustrator:+武将代码名称 (若不写此条目，默认为【官方】)
-      ["cv:testGeneral"] = "武将语音的配音",          -- cv:+武将代码名称 (若不写此条目，默认为【官方】)
-
-
-      ["testGeneral_skill1"] = "武将技能的名称",  
-      ["$testGeneral_skill1"] = "武将技能的语音台词",  -- $+武将代码名称 (若不写此条目则无语音台词)
-      [":testGeneral_skill1"] = "武将技能的描述",  -- :+武将代码名称 (若不写此条目则技能描述为武将技能英文代码名称)
-    }
-
-    return extension
-    -- 千万不要忘记在文件的末尾加入返回语句
-    -- 这里返回的是local extension = Package:new("package1") 之前创建武将扩展包时的对象。
-
-到这里，对整个定义武将的流程就结束了，请各位按照规范编写代码哦~
-
-定义卡牌
------------
-
-这里是一个完整扩展卡牌包的文件目录。你可以在这里了解制作卡牌扩展包所需要的各种文件与代码的规范。
-
-::
-
-    package1
-    ├── audio
-    │   ├── card
-    │   │   ├── female
-    │   │   │   └── card1.mp3
-    │   │   └── male
-    │   │       └── card1.mp3
-    │   │
-    ├── image
-    │   ├── card  
-    │   │   ├── delayedTrick
-    │   │   │   └──card_delayedTrick.png
-    │   │   ├── equipIcon
-    │   │   │   └──card_equipIcon.png
-    │   │   ├── card1.png
-    │   │   └── card2.png
-    │   │
-    ├── init.lua
-    └── testCard.lua
-
-
-扩展包初次进入后，其内部应有如下几个文件或文件夹。（内部的文件夹划分拥有固定的名称，请不要随意更改）
-
-1：audio
-^^^^^^^^
-audio是你的卡牌语音文件夹，其内部包括了card文件夹。而card内部又分为female与male文件夹。
-
-female与male分别对应卡牌在使用时所播放的女性语音与男性语音。
-
-**一张卡牌对应一个语音**，语音的命名与卡牌的代码名称相同。
-
-.. warning::
-
-    audio中的语音文件，应**全部是mp3格式。**
-
-    如果单纯的从其他格式以重命名的方式修改为mp3，可能会导致无法播放，请注意使用转化软件或者在线网站。
-
-
-2：image
-^^^^^^^^
-
-image是你的卡牌图片的文件夹，其内部包括了card文件夹。
-
-.. warning::
-
-    image中的card文件夹内部的图像文件，应**全部是png格式。**
-
-card文件夹内部存放了三部分。
-
-- delayedTrick文件夹
-- equipIcon文件夹
+- ``delayedTrick`` 文件夹
+- ``equipIcon`` 文件夹
 - 卡牌立绘文件.png等
 
-delayedTrick文件夹里面存放了DIY延时锦囊在使用后的图标。格式为**47x55**（若不需要则可以不用创建本文件夹）
+``delayedTrick`` 文件夹里面存放了DIY延时锦囊在使用后的图标。格式为 **47x55** （若不需要则可以不用创建本文件夹）
 
-
-equipIcon文件夹内部存放了DIY装备的小图标（即装备栏所见的小图标）。格式为**28x22**（若不需要则可以不用创建本文件夹）
+``equipIcon`` 文件夹内部存放了DIY装备的小图标（即装备栏所见的小图标）。格式为 **28x22** （若不需要则可以不用创建本文件夹）
 
 .. warning::
 
@@ -302,160 +148,279 @@ equipIcon文件夹内部存放了DIY装备的小图标（即装备栏所见的�
 
 卡牌立绘则是主要的部分，在card文件夹中放置你的diy卡牌立绘。格式为**93x130 png**文件。
 
+init.lua
+^^^^^^^^^
 
+``init.lua`` 文件是你扩展包的核心文件，**如果没有 init.lua ，新月杀就不会加载你的 extension/ 文件夹。**
 
-3：init.lua
-^^^^^^^^^^^
+在init文件中，应包含以下的函数或语句。
 
-init文件是扩展包的核心文件，引用时与武将扩展包方式一样，在【定义武将】板块讲解过的内容这里不再赘述。
+- 各个子扩展包的引用语句
+- 各个子扩展包的翻译表语句
+- 返回值一个表，其元素为各个子扩展包(Pakage对象)
+ 
+完整的 ``init.lua`` 示例结构如下：
 
-
-
-4：testCard.lua
-^^^^^^^^^^^
-testCard.lua是编写你的卡牌扩展的地方。其名称你可随意更改，但是请注意在init中的引用。
 
 .. code-block:: lua
    :linenos:
 
-   local extension = Package:new("package1")
-   extension.extensionName = "testCard"
-   -- 这一部分是卡牌扩展包的创建语句。
-   -- 第一行为创建卡牌扩展包，其被分类在你的package1扩展中。这里需要填入你的扩展文本夹名称。
-   -- 第二行为你的卡牌扩展包包名，test。请注意，包名应与你的武将扩展文件名一致。
-
-   Fk:loadTranslationTable {
-    ["testCard"] = "扩展卡牌包",
-   }
-
-
-   local testCard1_skill = fk.CreateActiveSkill{}
-   -- 这一部分是卡牌技能的创建函数。由于大多数卡牌都是主动使用才会触发，所以大部分卡牌都使用主动技。
-
-   local testCard1 = fk.CreateBasicCard{}
-   -- 这一部分是卡牌的创建函数。具体参数内容详情请查看CardSpec类。
-   -- 卡牌分为基本牌，锦囊牌与装备牌。但是我们在创建卡牌的时候，需要注意卡牌的副类型。
-   -- 例如，武器牌隶属于装备牌，但是我们在创建的时候需要使用以下函数来表示我们单独创建了一张武器牌。
-
-   local testCard2 = fk.CreateWeapon{}
-   -- Weapon是武器的意思，锦囊同理，也分为锦囊牌和延时锦囊。装备牌分为进攻马，防御马，防具，武器，宝物。
+   local prefix = "packages.extension.pkg."
+   -- 这一行定义了扩展的和子扩展包文件夹，extension 为你的扩展名，应与文件夹名相对应。
    
-   Fk:addSkill(testCard1_skill)
-   -- 请注意，卡牌的技能都是全局挂载，而不是绑定在某张卡上。
+   Fk:loadTranslationTable { ["extension"] = "扩展名" }
+   -- 这一行是扩展的翻译表
+   
+   local package1 = require(prefix .. "package1")
+   local package2 = require(prefix .. "package2")
+   -- 这两行定义了子扩展包的引用，返回的为Package对象
+   
+   Fk:loadTranslationTable {
+     ["package1"] = "包一名",
+     ["package2"] = "包二名",
+   }
+   -- 这两行是子扩展包的翻译表
+   
+   return {
+     package1,
+     package2,
+   }
+   -- 这一部分是return语句，作用返回你的各个子扩展包，需要与前面相对应。
+   -- 写在return里的文件会被新月杀发现然后执行
+
+
+
+子扩展包的结构
+----------
+
+首先，我们要明白一个概念，扩展包是你的个人扩展，在这个大分类中包含了你的武将子扩展包，卡牌子扩展包和模式子扩展包。
+
+每个子扩展包目录中的 ``init.lua`` 需要加通过 ``extension:loadSkillSkelsByPath`` 定义技能搜索目录。然后其余部分定义该包含有的武将、卡牌和游戏模式等，其应返回值是extension（一个Pakage对象）。
+
+
+``init.lua`` 中通常需包含以下内容。
+
+- 创建一个Package对象取名为extention。（这个命名是历史遗留）
+- 定义技能搜索目录
+- 创建若干武将对象并为他们添加技能，或者添加卡牌与游戏模式
+- 为该子扩展包中武将前缀，势力，各个武将，卡牌等信息添加翻译表
+
+每个技能应位于包的 ``skills/`` 目录下，置于单独的Lua文件中， 其应返回一个技能骨架（SkillSkelton）对象。
+
+这里是一个典型的子扩展包的文件目录示例。其具体结构随子扩展包类型不同而略有区别。
+
+::
+
+    package1
+    ├── init.lua
+    └── skills
+        ├── testGeneral_skill1.lua
+        └── testGeneral_skill2.lua
+
+package1是你的扩展包【英文代码】名称，请注意，**不要使用中文命名**
+
+
+武将子扩展包
+----------
+
+一个典型的武将子扩展包的 ``init.lua`` 示例如下 
+
+.. code-block:: lua
+    :linenos:
+
+    local extension = Package:new("package1")
+    extension.extensionName = "extension"
+    -- 这一部分是武将扩展包的创建语句。
+    -- 第一行为创建子扩展包，名称为package1。这里一般与你的子扩展包文件夹名一致。
+    -- 第二行为你的扩展包名，extension。请注意，包名一般与你的扩展文件夹名一致。
+
+    extension:loadSkillSkelsByPath("./packages/extension/pkg/package1/skills")
+    -- 这一部确定分子扩展包技能搜索路径
 
     Fk:loadTranslationTable {
-      ["testCard1"] = "卡牌的名称",               
-      [":testCard1"] = "卡牌效果的描述",  
+      ["package1"] = "扩展武将包",
+      ["testKingdom"] = "扩展武将势力",
+      ["test"] = "武将前缀",
+    }
+
+    General:new(extension, "test__General1", "testKingdom", 3, 4, General.Male):addSkills { "test__General_skill1", "test__General_skill2" }
+    -- 这一部分是武将的创建函数。具体参数详情请查看General类。
+    -- 我们创建了一个名为test__General1的武将，他的势力是testKingdom，初始体力为3，体力上限为4，是一名男性。
+    -- 并为他添加了两个技能
+
+    Fk:loadTranslationTable {
+      ["test__General1"] = "武将的名称",
+      ["#test__General1"] = "武将的称号",
+      -- #+武将代码名称 (若不写此条目，默认为【官方】)
+      ["~test__General1"] = "武将阵亡语音台词",
+      -- ~+武将代码名称 (若不写此条目则无语音台词)
+      ["designer:test__General1"] = "武将的设计者",
+      -- designer:+武将代码名称 (若不写此条目，默认为【官方】)
+      ["illustrator:test__General1"] = "武将立绘的画师",
+      -- illustrator:+武将代码名称 (若不写此条目，默认为【官方】)
+      ["cv:test__General1"] = "武将语音的配音",
+      -- cv:+武将代码名称 (若不写此条目，默认为【官方】)
+    }
+
+
+    local General2 = General:new(extension, "test__General2", "testKingdom", 3, 4, General.Male)
+
+    General2:addSkills { "test__General2_skill1", "test__General2_skill2" }
+    General2:addRelatedSkills { "test__General2_skill3" }
+
+    Fk:loadTranslationTable {
+      -- 这其中应包含武将二的相关翻译表，这里不再赘述
+    }
+    -- 这一部分展示了带衍生技的武将的创建方式
+
+    return extension
+    -- 千万不要忘记在文件的末尾加入返回语句
+    -- 这里返回的是local extension = Package:new("package1") 之前创建子扩展包时的对象。
+
+``skills`` 文件夹包含每个技能的实现，以下是一个典型的武将技能的实现文件
+
+.. code-block:: lua
+    :linenos:
+
+    local skill1 = fk.CreateSkill {
+      name = "test_skill1",        --技能代码名
+      tags = { Skill.Compulsory, } -- 技能标签，比如锁定技
+    }
+    -- 这一部分创建了技能骨架，具体参见SkillSkeletonSpec类
+    skill1:addEffect("active", {})
+    -- 添加一个主动效果
+    skill1:addEffect(fk.AfterCardsMove, {})
+    -- 添加一个触发技效果
+    -- 还可以添加其他技能效果，关于技能效果类型请参见技能管理
+
+
+    Fk:loadTranslationTable {
+      ["test_skill1"] = "技能名",
+      [":test_skill1"] = "技能描述",
+      ["$test_skill1"] = "技能语音1",
+      ["$test_skill2"] = "技能语音2",
+    }
+    -- 这一部分是该技能相关的翻译表
+
+    return skill1
+    -- 返回我们创建的技能骨架对象
+
+卡牌子扩展包
+--------
+
+一个典型的卡牌子扩展包的 ``init.lua`` 示例如下
+    
+.. code-block:: lua
+    :linenos:
+
+	local extension = Package:new("package2", Package.CardPack)
+    extension.extensionName = "extension"
+    -- 这一部分与武将扩展一致
+    extension.game_modes_whitelist = { "test_Gamemode1" }
+    extension.game_modes_blacklist = { "test_Gamemode2", "test_Gamemode3" }
+    -- 这一部分定义了该扩展的黑白名单
+    Fk:loadTranslationTable {
+      ["package2"] = "子扩展包名",
+    }
+
+    extension:loadSkillSkelsByPath("./packages/extension/pkg/package2/skills")
+    -- 该子扩展包技能查找路径
+    local card1 = fk.CreateCard {
+      name = "test_card1",
+      type = Card.TypeBasic,
+      skill = "test_card1_skill",
+    }
+    -- 这里是创建卡牌的创建函数，具体参见CardSpec类
+
+    Fk:loadTranslationTable {
+      ["test_Card1"] = "卡牌的名称",
+      [":test_Card1"] = "卡牌效果的描述",
       -- <b>牌名：</b>卡牌名称<br/><b>类型：</b>装备牌·武器（装备牌拥有副类时遵照此格式）<br /><b>攻击范围</b>：1<br /><b>武器技能</b>：技能描述。
       -- <b>牌名：</b>卡牌名称<br/><b>类型：</b>基本牌<br /><b>时机</b>：出牌阶段<br /><b>目标</b>：一名其他角色<br /><b>效果</b>：对目标造成一点伤害
-      -- 若类型为延时锦囊则直接写延时锦囊牌 即可。 
+      -- 若类型为延时锦囊则直接写延时锦囊牌 即可。
       -- 若某些卡牌拥有主动效果，例如丈八蛇矛，则需要对武器牌的skill进行翻译。翻译格式与武将技能格式一样。
     }
 
-    extension:addCards({
-      testCard1:clone(Card.Club,2),
-      testCard1:clone(Card.Club,2),
-    })
-    -- 这里是往本卡牌扩展中添加卡牌，clone的数量代表了本卡包中有多少张这种牌。
+    extension:loadCardSkels { card1, }
+    -- 为我们创建的卡牌添加技能
+
+    extension:addCardSpec("test_card1", Card.Heart, 1)
+    extension:addCardSpec("test_card1", Card.Club, 1)
+    extension:addCardSpec("test_card1", Card.Diamond, 1)
+    extension:addCardSpec("test_card1", Card.Spade, 1)
+    -- 这里是往本卡牌扩展中添加卡牌
 
 
     return extension
     -- 千万不要忘记在文件的末尾加入返回语句
-    -- 这里返回的是local extension = Package:new("package1") 之前创建武将扩展包时的对象。
+    -- 这里返回的是local extension = Package:new("package2") 之前创建子扩展包时的对象。
 
-到这里，对整个定义卡牌的流程就结束了，请各位按照规范编写代码哦~
+卡牌技能的效果以技能的形式放于 ``skills`` 文件夹内
 
-定义游戏模式
---------------
+模式子扩展包
+--------
+
+对于模式子扩展包，我们的惯例是将创建模式子扩展包的语句加入整个扩展根目录的 ``init.lua`` 中。但也可以如武将或者卡牌子扩展包那样置于子扩展包文件夹内。
+
+模式子扩展包的文件夹内应存在 ``rule_skills`` 文件夹用于存放游戏规则技能的定义。
+
+一个典型的模式子扩展包的 ``init.lua`` 示例如下
+
+.. code-block:: lua
+    :linenos:
+
+    local extension = Package:new("test_mode", Package.SpecialPack)
+    -- 创建扩展包对象
+    extension.extensionName = "test_mode"
+    -- 定义扩展包名称
+
+    extension:loadSkillSkelsByPath("./packages/extension/pkg/package3/rule_skills")
+    -- 加载游戏规则技能
+    Fk:loadTranslationTable {
+      ["test_mode"] = "模式包名称",
+    }
+    local test_mode = require "packages/extension/package3/test_mode"
+    -- 引用游戏模式定义文件
+
+    extension:addGameMode(test_mode)
+    -- 这里是往本扩展包中添加游戏模式，参数为定义好的游戏模式对象。
 
 
+    return extension
+    -- 返回扩展包对象
 
-
-游戏模式的基本代码格式
-^^^^^^^^^^^^^^^^^^^^
-
-定义游戏模式的话需要在init.lua中添加本模式，可以新建一个以下的目录结构。
-
-::
-
-    testpackage
-    ├── gamemode
-    │   ├── role_mode.lua
-    │   │
-    ├── pkgs
-    │   ├── role_mode  
-    │   │   ├── skills
-    │   │   │   └──game_rule.lua
-    │   │   └──init.lua
-    │   │
-    └── init.lua
-
-
-我们需要在 testpackage/gamemode/role_mode 中写入主要的模式定义代码。
+模式的具体实现应该置于 ``testmode.lua`` 文件中，示例如下
 
 
 .. code-block:: lua
-   :linenos:
+    :linenos:
+	
+    local jieshao = [[
+         这里是游戏模式的介绍，可以写一些游戏规则，游戏机制等。
+       ]]
 
-   local  jieshao=[[
-     这里是游戏模式的介绍，可以写一些游戏规则，游戏机制等。
-   ]]
+    -- 定义游戏模式的逻辑，这里放的是主要的部分。由于该部分太长，所以不放在主函数中。
+    local role_getlogic = function() end
 
-   -- 定义游戏模式的逻辑，这里放的是主要的部分。由于该部分太长，所以不放在主函数中。
-   local role_getlogic = function() end
-     
-   -- 定义游戏模式，这里从身份模式举例
-   local role_mode = fk.CreateGameMode{
-      name = "testMode", -- 定义游戏模式的名称
-      minPlayer = 2, -- 定义游戏模式的最少玩家数量
-      maxPlayer = 8, -- 定义游戏模式的最多玩家数量
-      rule="game_rule"   -- 定义游戏的规则技能  
-      logic = role_getlogic, -- 定义游戏模式的逻辑
+    -- 定义游戏模式，这里从身份模式举例
+    local test_mode = fk.CreateGameMode {
+      name = "testMode",       -- 定义游戏模式的名称
+      minPlayer = 2,           -- 定义游戏模式的最少玩家数量
+      maxPlayer = 8,           -- 定义游戏模式的最多玩家数量
+      rule = "game_rule",      -- 定义游戏的规则技能
+      logic = role_getlogic,   -- 定义游戏模式的逻辑
       main_mode = "role_mode", -- 定义游戏模式的主模式，这里是身份模式
-      ...... -- 其他参数
+      ......                   -- 其他参数
+    }
 
-   }
-
-   Fk:loadTranslationTable {   -- 翻译表
+    Fk:loadTranslationTable {  -- 翻译表
       ["testMode"] = "测试模式",
-      [":testMode"] = jieshao,  -- 模式的介绍
-   }
+      [":testMode"] = jieshao, -- 模式的介绍
+    }
 
-   return role_mode
+    return test_mode
 
-
-
-接下来我们回到testpackage/pkgs/role_mode/init.lua中，这里是模式的初始化文件。
-
-.. code-block:: lua
-   :linenos:
-    
-   local extension = Package:new("role_mode",Package.SpecialPack) -- 创建扩展包对象
-   extension.extensionName = "role_mode" -- 定义扩展包名称
-
-   extension:loadSkillSkelsByPath("./packages/testpackage/pkgs/role_mode/skills") -- 加载游戏规则技能
-   
-   local role_mode = require "packages/testpackage/gamemode/role_mode" -- 引用游戏模式定义文件
-
-   extension:addGameMode(role_mode) -- 这里是往本扩展包中添加游戏模式，参数为定义好的游戏模式对象。
-
-   return extension -- 返回扩展包对象
-
-
-
-最后，我们回到testpackage/init.lua中，这里是扩展包的初始化文件。
-
-.. code-block:: lua
-   :linenos:
-
-   local role_mode = require "packages/testpackage/pkgs/role_mode" -- 引用游戏模式定义文件
-
-   return{
-      role_mode,
-   }
-
-
-游戏模式的基本代码格式已经介绍完毕，下面我们介绍一下游戏模式的主要定义。
+模式子扩展包的基本代码格式已经介绍完毕，下面我们介绍一下游戏模式的主要定义。
 
 
 

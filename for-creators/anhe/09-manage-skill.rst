@@ -333,6 +333,7 @@ PS：我们之前设计的美王技能也是一个触发技哦～
 ☆ 可见技，令某个角色的身份，卡牌变成可见的技能。比如捷悟之类的。
 
 创建可见技用到的方法是 ``addEffect("visibility",{})`` ，它的原型是：
+
 .. code:: lua
 
   ---@class VisibilitySpec: StatusSkillSpec
