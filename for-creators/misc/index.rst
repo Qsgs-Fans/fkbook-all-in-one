@@ -10,3 +10,4 @@
    ai-remake.rst
    mode-config.rst
    mark-banner.rst
+   skin-package.rst
