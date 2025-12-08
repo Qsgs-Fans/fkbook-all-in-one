@@ -18,32 +18,46 @@
 ::
 
   fk> help
-  08/14 14:57:37 Shell[I] Running command: "help"
-  08/14 14:57:37 Shell[I] Frequently used commands:
-  08/14 14:57:37 Shell[I] help: Display this help message.
-  08/14 14:57:37 Shell[I] quit: Shut down the server.
-  08/14 14:57:37 Shell[I] crash: Crash the server. Useful when encounter dead loop.
-  08/14 14:57:37 Shell[I] lsplayer: List all online players.
-  08/14 14:57:37 Shell[I] lsroom: List all running rooms.
-  08/14 14:57:37 Shell[I] reloadconf/r: Reload server config file.
-  08/14 14:57:37 Shell[I] kick: Kick a player by his <id>.
-  08/14 14:57:37 Shell[I] msg/m: Broadcast message.
-  08/14 14:57:37 Shell[I] ban: Ban 1 or more accounts, IP, UUID by their <name>.
-  08/14 14:57:37 Shell[I] unban: Unban 1 or more accounts by their <name>.
-  08/14 14:57:37 Shell[I] banip: Ban 1 or more IP address. At least 1 <name> required.
-  08/14 14:57:37 Shell[I] unbanip: Unban 1 or more IP address. At least 1 <name> required.
-  08/14 14:57:37 Shell[I] banuuid: Ban 1 or more UUID. At least 1 <name> required.
-  08/14 14:57:37 Shell[I] unbanuuid: Unban 1 or more UUID. At least 1 <name> required.
-  08/14 14:57:37 Shell[I] resetpassword/rp: reset <name>'s password to 1234.
-  08/14 14:57:37 Shell[I]
-  08/14 14:57:37 Shell[I] ===== Package commands =====
-  08/14 14:57:37 Shell[I] install: Install a new package from <url>.
-  08/14 14:57:37 Shell[I] remove: Remove a package.
-  08/14 14:57:37 Shell[I] lspkg: List all packages.
-  08/14 14:57:37 Shell[I] enable: Enable a package.
-  08/14 14:57:37 Shell[I] disable: Disable a package.
-  08/14 14:57:37 Shell[I] upgrade/u: Upgrade a package. Leave empty to upgrade all.
-  08/14 14:57:37 Shell[I] For more commands, check the documentation.
+[25-12-08 21:26:25.471733] [655743/I] Running command: 'help'
+[25-12-08 21:26:25.471759] [655743/I] Frequently used commands:
+[25-12-08 21:26:25.471763] [655743/I] ===== General commands =====
+[25-12-08 21:26:25.471774] [655743/I] help: Display this help message.
+[25-12-08 21:26:25.471781] [655743/I] quit: Shut down the server.
+[25-12-08 21:26:25.471788] [655743/I] crash: Crash the server. Useful when encounter dead loop.
+[25-12-08 21:26:25.471794] [655743/I] stat/gc: View status of server.
+[25-12-08 21:26:25.471801] [655743/I] reloadconf/r: Reload server config file.
+[25-12-08 21:26:25.471806] [655743/I]
+[25-12-08 21:26:25.471810] [655743/I] ===== Inspect commands =====
+[25-12-08 21:26:25.471814] [655743/I] lsplayer: List all online players.
+[25-12-08 21:26:25.471818] [655743/I] lsroom: List all running rooms, or show player of room by an <id>.
+[25-12-08 21:26:25.471822] [655743/I] msg/m: Broadcast message.
+[25-12-08 21:26:25.471838] [655743/I] msgroom/mr: Broadcast message to a room.
+[25-12-08 21:26:25.471841] [655743/I] kick: Kick a player by his <id>.
+[25-12-08 21:26:25.471845] [655743/I] killroom: Kick all players in a room, then abandon it.
+[25-12-08 21:26:25.471849] [655743/I] checklobby: Delete dead players in the lobby.
+[25-12-08 21:26:25.471852] [655743/I]
+[25-12-08 21:26:25.471855] [655743/I] ===== Account commands =====
+[25-12-08 21:26:25.471858] [655743/I] ban: Ban 1 or more accounts, IP, UUID by their <name>.
+[25-12-08 21:26:25.471862] [655743/I] unban: Unban 1 or more accounts by their <name>.
+[25-12-08 21:26:25.471866] [655743/I] banip: Ban 1 or more IP address. At least 1 <name> required.
+[25-12-08 21:26:25.471870] [655743/I] unbanip: Unban 1 or more IP address. At least 1 <name> required.
+[25-12-08 21:26:25.471874] [655743/I] banuuid: Ban 1 or more UUID. At least 1 <name> required.
+[25-12-08 21:26:25.471877] [655743/I] unbanuuid: Unban 1 or more UUID. At least 1 <name> required.
+[25-12-08 21:26:25.471881] [655743/I] tempban: Ban an accounts by his <name> and <duration> (??m/??h/??d/??mo).
+[25-12-08 21:26:25.471885] [655743/I] tempmute: Ban a player's chat by his <name> and <duration> (??m/??h/??d/??mo).
+[25-12-08 21:26:25.471889] [655743/I] unmute: Unban 1 or more players' chat by their <name>.
+[25-12-08 21:26:25.471893] [655743/I] whitelist: Add or remove names from whitelist.
+[25-12-08 21:26:25.471896] [655743/I] resetpassword/rp: reset <name>'s password to 1234.
+[25-12-08 21:26:25.471900] [655743/I]
+[25-12-08 21:26:25.471903] [655743/I] ===== Package commands =====
+[25-12-08 21:26:25.471906] [655743/I] install: Install a new package from <url>.
+[25-12-08 21:26:25.471909] [655743/I] remove: Remove a package.
+[25-12-08 21:26:25.471913] [655743/I] pkgs: List all packages.
+[25-12-08 21:26:25.471916] [655743/I] syncpkgs: Get packages hash from file system and write to database.
+[25-12-08 21:26:25.471920] [655743/I] enable: Enable a package.
+[25-12-08 21:26:25.471923] [655743/I] disable: Disable a package.
+[25-12-08 21:26:25.471927] [655743/I] upgrade/u: Upgrade a package. Leave empty to upgrade all.
+[25-12-08 21:26:25.471930] [655743/I] For more commands, check the documentation.
 
 help命令会列出所有的操作方法。一一说明吧。
 
@@ -80,6 +94,12 @@ help命令会列出所有的操作方法。一一说明吧。
 
 ::
 
+  fk> pkgs
+
+检查所有下载的安装包
+
+::
+
   fk> disable shzl
   fk> enable shzl
 
@@ -97,7 +117,7 @@ help命令会列出所有的操作方法。一一说明吧。
   fk> u
 
 上面两条指令中，第一条指明更新神话再临包；第二条则是更新本服安装的所有拓展包\
-（包括已经被禁用的拓展包）。
+（包括已经被禁用的拓展包），也可以像upgrade一样更新某个包，fk> u shzl。
 
 .. danger::
 
@@ -117,9 +137,50 @@ ban命令会同时封禁用户名和设备码。
 
 使用banip命令可以封禁用户的ip地址，参数一样的是用户名。
 
-同理，unban和unbanip命令可以解封相应的用户。
+banuid是根据玩家uid进行封禁
+
+同理，unban，unbanuuid和unbanip命令可以解封相应的用户。
+
+::
+
+  fk> tempban notify 12h
+
+tempban命令是封禁玩家一段时间，用法是tempban <name> <duration(日期)>
+
+name是玩家的名称，duration则是封禁时长，用法是(??m/??h/??d/??mo)，m代表分钟，h代表小时，d代表天数，mo代表月份。
+
+::
+
+  fk> tempmute 1 notify 12h
+
+tempmute命令是根据类型禁言某名玩家一段时间，用法是tempban <type> <name> <duration(日期)>
+
+name和duration与tempban命令里面的格式是一样的，这里主要介绍一下type
+
+type参数有两个值，一个值是
+
+1：禁止玩家发送语音与鸡蛋，并且禁止发送消息
+
+2：禁止玩家发送语音与鸡蛋。
+
+从结果上来看，2要比1的程度要轻，这边看服主个人的判断。
 
 如果用户因为逃跑被自动封禁，则无法使用除了重启之外的任何手段解封。
+
+::
+
+  fk> whitelist add notify1 notify2
+
+whitelist是批量添加或移除玩家至服务器白名单。命令格式为：whitelist <add/remove> <name1> <name2> ....
+
+
+::
+
+  fk> resetpassword/rp notify
+
+resetpassword或rp命令是重置玩家的密码为1234（默认值）。格式为：resetpassword/rp <name> <password?>
+
+password可填可不填，不填就为默认值1234.
 
 其他命令
 --------
@@ -129,12 +190,6 @@ msg命令（简写为m）可以向全服发送通告，参数就是通告内容�
 ::
 
   fk> m 恭喜！玩家<b>神话天尊</b>在排位赛中升级到了最强的枭雄段位！
-
-resetpassword命令（简写为rp）可以将用户的密码重置为1234。指定用户名就行了。
-
-::
-
-  fk> rp notify
 
 reloadconf（简写为r）可以重新加载服务器端的配置文件而无须重启服务器。\
 在修改了服务器公告之后这个命令很有用。
