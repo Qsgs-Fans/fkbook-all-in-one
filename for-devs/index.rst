@@ -42,6 +42,7 @@
    terminology.rst
    compile/index.rst
    protocol.rst
+   task.rst
 
    asio/index.rst
    fk/index.rst
