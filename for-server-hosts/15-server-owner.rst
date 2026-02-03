@@ -16,89 +16,49 @@
 在新月杀自己的shell中使用help命令即可阅读各种帮助：
 
 ::
+
 	fk> help
-
 	[25-12-08 21:26:25.471733] [655743/I] Running command: 'help'
-
 	[25-12-08 21:26:25.471759] [655743/I] Frequently used commands:
-
 	[25-12-08 21:26:25.471763] [655743/I] ===== General commands =====
-
 	[25-12-08 21:26:25.471774] [655743/I] help: Display this help message.
-
 	[25-12-08 21:26:25.471781] [655743/I] quit: Shut down the server.
-
 	[25-12-08 21:26:25.471788] [655743/I] crash: Crash the server. Useful when encounter dead loop.
-
 	[25-12-08 21:26:25.471794] [655743/I] stat/gc: View status of server.
-
 	[25-12-08 21:26:25.471801] [655743/I] reloadconf/r: Reload server config file.
-
 	[25-12-08 21:26:25.471806] [655743/I]
-
 	[25-12-08 21:26:25.471810] [655743/I] ===== Inspect commands =====
-
 	[25-12-08 21:26:25.471814] [655743/I] lsplayer: List all online players.
-
 	[25-12-08 21:26:25.471818] [655743/I] lsroom: List all running rooms, or show player of room by an <id>.
-
 	[25-12-08 21:26:25.471822] [655743/I] msg/m: Broadcast message.
-
 	[25-12-08 21:26:25.471838] [655743/I] msgroom/mr: Broadcast message to a room.
-
 	[25-12-08 21:26:25.471841] [655743/I] kick: Kick a player by his <id>.
-
 	[25-12-08 21:26:25.471845] [655743/I] killroom: Kick all players in a room, then abandon it.
-
 	[25-12-08 21:26:25.471849] [655743/I] checklobby: Delete dead players in the lobby.
-
 	[25-12-08 21:26:25.471852] [655743/I]
-
 	[25-12-08 21:26:25.471855] [655743/I] ===== Account commands =====
-
 	[25-12-08 21:26:25.471858] [655743/I] ban: Ban 1 or more accounts, IP, UUID by their <name>.
-
 	[25-12-08 21:26:25.471862] [655743/I] unban: Unban 1 or more accounts by their <name>.
-
 	[25-12-08 21:26:25.471866] [655743/I] banip: Ban 1 or more IP address. At least 1 <name> required.
-
 	[25-12-08 21:26:25.471870] [655743/I] unbanip: Unban 1 or more IP address. At least 1 <name> required.
-
 	[25-12-08 21:26:25.471874] [655743/I] banuuid: Ban 1 or more UUID. At least 1 <name> required.
-
 	[25-12-08 21:26:25.471877] [655743/I] unbanuuid: Unban 1 or more UUID. At least 1 <name> required.
-
 	[25-12-08 21:26:25.471881] [655743/I] tempban: Ban an accounts by his <name> and <duration> (??m/??h/??d/??mo).
-
 	[25-12-08 21:26:25.471885] [655743/I] tempmute: Ban a player's chat by his <name> and <duration> (??m/??h/??d/??mo).
-
 	[25-12-08 21:26:25.471889] [655743/I] unmute: Unban 1 or more players' chat by their <name>.
-
 	[25-12-08 21:26:25.471893] [655743/I] whitelist: Add or remove names from whitelist.
-
 	[25-12-08 21:26:25.471896] [655743/I] resetpassword/rp: reset <name>'s password to 1234.
-
 	[25-12-08 21:26:25.471900] [655743/I]
-
 	[25-12-08 21:26:25.471903] [655743/I] ===== Package commands =====
-
 	[25-12-08 21:26:25.471906] [655743/I] install: Install a new package from <url>.
-
 	[25-12-08 21:26:25.471909] [655743/I] remove: Remove a package.
-
 	[25-12-08 21:26:25.471913] [655743/I] pkgs: List all packages.
-
 	[25-12-08 21:26:25.471916] [655743/I] syncpkgs: Get packages hash from file system and write to database.
-
 	[25-12-08 21:26:25.471920] [655743/I] enable: Enable a package.
-
 	[25-12-08 21:26:25.471923] [655743/I] disable: Disable a package.
-
 	[25-12-08 21:26:25.471927] [655743/I] upgrade/u: Upgrade a package. Leave empty to upgrade all.
-
 	[25-12-08 21:26:25.471930] [655743/I] For more commands, check the documentation.
 
-  
 help命令会列出所有的操作方法。一一说明吧。
 
 拓展包管理相关
@@ -435,6 +395,11 @@ sqlite命令行导出csv文件
 
 服务端版本更新
 ---------------
+
+.. todo::
+
+   已过时。
+
 比如远程仓库已经更新到了v0.5.12，现在让我们回到Fk>提示符下，输入quit暂时关闭服务器，回到FreeKill目录后，输入：
 
 ::
