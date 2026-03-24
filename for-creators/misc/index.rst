@@ -12,3 +12,4 @@
    mark-banner.rst
    skin-package.rst
    task.rst
+   lua-and-qml.rst
