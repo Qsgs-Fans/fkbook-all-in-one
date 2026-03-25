@@ -138,10 +138,11 @@
 .. toctree::
    :numbered:
 
-   02-event.rst
-   03-movecard.rst
-   04-gameflow.rst
-   05-skill.rst
+   01-skill.rst
+   02-skel.rst
+   03-event.rst
+   04-movecard.rst
+   05-gameflow.rst
    06-use-response.rst
    07-hp.rst
    08-death.rst
